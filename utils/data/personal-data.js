@@ -9,8 +9,8 @@ export const personalData = {
   address: "Bangalore, India",
   github: "https://github.com/abhishekjais-124",
   linkedin: "https://www.linkedin.com/in/abhi124",
-  twitter: "",
-  stackOverflow: "",
+  twitter: "https://x.com",
+  stackOverflow: "https://stackoverflow.com/questions",
   leetcode: "https://leetcode.com/u/jabhi_18",
   devUsername: "abhi124",
   resume: "https://drive.google.com/file/d/10HVraDNws8YxkR9bP069HtwvHa_Q5LsN/view"
