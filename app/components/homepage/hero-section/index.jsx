@@ -25,48 +25,67 @@ function HeroSection() {
           <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
             Hello, <br />
             This is {' '}
-            <span className=" text-pink-500">{personalData.name}</span>
+            <span className=" text-pink-500">{personalData.name.toUpperCase()}</span>
             {` , I'm a Professional `}
-            <span className=" text-[#16f2b3]">{personalData.designation}</span>
+            <span className=" text-[#16f2b3]">{personalData.designation.toUpperCase()}</span>
             .
           </h1>
 
           <div className="my-12 flex items-center gap-5">
-            <Link
-              href={personalData.github}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <BsGithub size={30} />
-            </Link>
-            <Link
-              href={personalData.linkedIn}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <BsLinkedin size={30} />
-            </Link>
-            <Link
-              href={personalData.facebook}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <FaFacebook size={30} />
-            </Link>
-            <Link
-              href={personalData.leetcode}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <SiLeetcode size={30} />
-            </Link>
-            <Link
-              href={personalData.twitter}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <FaTwitterSquare size={30} />
-            </Link>
+            {personalData.github && (
+              <Link
+                href={personalData.github}
+                target='_blank'
+                className="transition-all text-pink-500 hover:scale-125 duration-300"
+                aria-label="GitHub"
+              >
+                <BsGithub size={30} />
+              </Link>
+            )}
+
+            {personalData.linkedIn && (
+              <Link
+                href={personalData.linkedIn}
+                target='_blank'
+                className="transition-all text-pink-500 hover:scale-125 duration-300"
+                aria-label="LinkedIn"
+              >
+                <BsLinkedin size={30} />
+              </Link>
+            )}
+
+            {personalData.facebook && (
+              <Link
+                href={personalData.facebook}
+                target='_blank'
+                className="transition-all text-pink-500 hover:scale-125 duration-300"
+                aria-label="Facebook"
+              >
+                <FaFacebook size={30} />
+              </Link>
+            )}
+
+            {personalData.leetcode && (
+              <Link
+                href={personalData.leetcode}
+                target='_blank'
+                className="transition-all text-pink-500 hover:scale-125 duration-300"
+                aria-label="LeetCode"
+              >
+                <SiLeetcode size={30} />
+              </Link>
+            )}
+
+            {personalData.twitter && (
+              <Link
+                href={personalData.twitter}
+                target='_blank'
+                className="transition-all text-pink-500 hover:scale-125 duration-300"
+                aria-label="Twitter"
+              >
+                <FaTwitterSquare size={30} />
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center gap-3">
@@ -108,29 +127,31 @@ function HeroSection() {
               <div>
                 <span className="ml-4 lg:ml-8 mr-2 text-white">name:</span>
                 <span className="text-gray-400">{`'`}</span>
-                <span className="text-amber-300">Abu Said</span>
+                <span className="text-amber-300">Abhishek Jaiswal</span>
                 <span className="text-gray-400">{`',`}</span>
               </div>
               <div className="ml-4 lg:ml-8 mr-2">
                 <span className=" text-white">skills:</span>
                 <span className="text-gray-400">{`['`}</span>
-                <span className="text-amber-300">React</span>
+                <span className="text-amber-300">Java</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">NextJS</span>
+                <span className="text-amber-300">Python</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Redux</span>
+                <span className="text-amber-300">Go</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Express</span>
+                <span className="text-amber-300">AWS</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">NestJS</span>
+                <span className="text-amber-300">HLD</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">MySql</span>
+                <span className="text-amber-300">SQL</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">MongoDB</span>
+                <span className="text-amber-300">LLD</span>
                 <span className="text-gray-400">{"', '"}</span>
                 <span className="text-amber-300">Docker</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">AWS</span>
+                <span className="text-amber-300">Algorithms</span>
+                <span className="text-gray-400">{"', '"}</span>
+                <span className="text-amber-300">Distributed Systems</span>
                 <span className="text-gray-400">{"'],"}</span>
               </div>
               <div>

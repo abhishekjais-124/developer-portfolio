@@ -1,14 +1,17 @@
 export const personalData = {
   name: "Abhishek Jaiswal",
-  profile: "/profile2.png",
-  designation: "Senior Software Engineer (Backend)",
-  description:
-    "Senior Backend Software Engineer with 4+ years of experience designing and building scalable, high-traffic systems. Currently at Unacademy, owning revenue-critical systems including payments, subscriptions, and in-app purchases for Apple and Google, handling 100K+ monthly webhooks with 99.98% uptime. Experienced in system design, distributed systems, data modeling, and performance optimization. Strong problem-solver with deep interest in data structures, algorithms, and building reliable systems at scale.",
+  profile: "/profile3.png",
+  designation: "Senior Software Engineer",
+  description: "Software Engineer with 4+ years of experience specializing in scalable backend systems, cloud platforms,large-scale distributed architectures, microservices, and AI-driven development. Proven expertise inbuilding high-performance APIs, driving user engagement, optimizing systems for millions of users globally. Passionate about leveraging cutting-edge technologies to solve complex problems and deliver impactful solutions.",
   email: "abhishekjaiswal124@gmail.com",
-  phone: "+91-XXXXXXXXXX",
+  phone: "+91-7615815667",
   address: "Bangalore, India",
   github: "https://github.com/abhishekjais-124",
   linkedin: "https://www.linkedin.com/in/abhi124",
+  // backward-compatible alias used by other components
+  linkedIn: "https://www.linkedin.com/in/abhi124",
+  // optional Facebook profile (used in some components)
+  facebook: "https://www.facebook.com/yourprofile",
   twitter: "https://twitter.com/your-twitter",
   stackOverflow: "https://stackoverflow.com/users/your-id",
   leetcode: "https://leetcode.com/u/jabhi_18",

@@ -54,8 +54,8 @@ A professional portfolio template built with **Next.js 16**, **React 19**, and *
 - ✅ **Blazing Fast Performance**: Leverages Next.js 16 server components and streaming
 - ✅ **App Router**: Uses the modern Next.js App Router architecture
 - ✅ **Easy Customization**: Simple data-driven configuration
-- ✅ **Contact Form**: Integrated email and Telegram notifications
-- ✅ **Blog Integration**: Automatically fetch posts from dev.to
+- ✅ **Contact Form**: Integrated email notifications
+- ✅ **Achievements Integration**: Automatically fetch posts from dev.to
 - ✅ **Dark Theme**: Beautiful gradient design with Lottie animations
 - ✅ **Docker Support**: Easy containerized deployment
 - ✅ **Google Analytics**: Track visitor insights with GTM support
@@ -89,8 +89,8 @@ This portfolio leverages the latest Next.js 16 and React 19 capabilities:
 | 🛠️ **Skills**     | Technical skills with animated marquee display      |
 | 🚀 **Projects**   | Showcase your best work with descriptions and links |
 | 🎓 **Education**  | Academic background and certifications              |
-| 📝 **Blog**       | Latest articles from dev.to (auto-fetched)          |
-| 📧 **Contact**    | Get in touch form with email/Telegram integration   |
+| 📝 **Achievements**       | Latest articles from dev.to (auto-fetched)          |
+| 📧 **Contact**    | Get in touch form with email integration   |
 
 ---
 
@@ -107,8 +107,7 @@ This portfolio leverages the latest Next.js 16 and React 19 capabilities:
 - [Deployment](#deployment-rocket)
 - [Tutorials](#tutorials-wrench)
   - [Gmail App Password Setup](#gmail-app-password-setup)
-  - [Create a Telegram Bot](#create-a-telegram-bot)
-  - [Fetching Blog from dev.to](#fetching-blog-from-devto)
+  - [Fetching Achievements from dev.to](#fetching-achievements-from-devto)
 - [Packages Used](#packages-used-package)
 - [Contributing](#contributing-handshake)
 - [License](#license-page_with_curl)
@@ -255,10 +254,6 @@ NEXT_PUBLIC_GTM=GTM-XXXXXXX
 # Your deployed app URL
 NEXT_PUBLIC_APP_URL=https://your-domain.com
 
-# Telegram Bot Configuration (for contact form notifications)
-TELEGRAM_BOT_TOKEN=your_bot_token_here
-TELEGRAM_CHAT_ID=your_chat_id_here
-
 # Gmail Configuration (for contact form emails)
 GMAIL_PASSKEY=your_gmail_app_password
 EMAIL_ADDRESS=your_email@gmail.com
@@ -270,12 +265,10 @@ EMAIL_ADDRESS=your_email@gmail.com
 | --------------------- | -------- | -------------------------------------------- |
 | `NEXT_PUBLIC_GTM`     | No       | Google Tag Manager ID for analytics tracking |
 | `NEXT_PUBLIC_APP_URL` | Yes      | Your portfolio's public URL                  |
-| `TELEGRAM_BOT_TOKEN`  | No       | Token for Telegram bot notifications         |
-| `TELEGRAM_CHAT_ID`    | No       | Your Telegram chat ID for receiving messages |
 | `GMAIL_PASSKEY`       | No       | Gmail app password for email notifications   |
 | `EMAIL_ADDRESS`       | No       | Your Gmail address for sending emails        |
 
-> **Note**: Contact form features require either Telegram or Gmail configuration (or both).
+> **Note**: Contact form features require Gmail configuration for email notifications.
 
 ---
 
@@ -393,30 +386,14 @@ GMAIL_PASSKEY=abcd efgh ijkl mnop
 EMAIL_ADDRESS=your.email@gmail.com
 ```
 
----
-
-### 🤖 Create a Telegram Bot
-
-1. Open Telegram and search for `@BotFather`
-2. Send `/newbot` command
-3. Set bot name and username (must end with `bot`)
-4. Copy the bot token
-5. Send a message to your bot
-6. Get chat ID from: `https://api.telegram.org/bot<BOT_TOKEN>/getUpdates`
-7. Add to `.env` file:
-
-```env
-TELEGRAM_BOT_TOKEN=123456789:ABCdefGHIjklMNOpqrsTUVwxyz
-TELEGRAM_CHAT_ID=123456789
-```
 
 ---
 
-### 📝 Fetching Blog from dev.to
+### 📝 Fetching Achievements from dev.to
 
 1. Create a [dev.to](https://dev.to/) account
 2. Open `utils/data/personal-data.js`
-3. Set your dev.to username:
+3. Set your dev.to username (used for Achievements/Blog integration):
 
 ```javascript
 export const personalData = {

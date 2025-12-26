@@ -1,52 +1,42 @@
 export const projectsData = [
-    {
-        id: 1,
-        name: 'AI Powered Financial App',
-        description: "Me and my team built an AI-powered financial mobile application. I have developed API using Express, Typescript, OpenAI, AWS, and MongoDB. Used OTP via AWS SES, Google, and Facebook for the authentication system. Built AI assistants using OpenAI's latest model and trained using our dataset. Voice messages are converted to text using AWS Transcribe. The app fetches data from Google Sheets and generates a PDF term sheet, sent via AWS SES.",
-        tools: ['Express', 'MongoDB', 'OpenAI API', 'AWS SES', 'AWS S3', 'Node Mailer', 'Joi', 'Puppeteer', 'EC2', 'PM2', 'Nginx'],
-        role: 'Backend Developer',
-        code: 'https://github.com/abhishekjais-124',
-        demo: 'https://github.com/abhishekjais-124',
-    },
-    {
-        id: 2,
-        name: 'Travel Agency App',
-        description: 'I have designed and developed a full-stack web app for 2Expedition, a travel agency in Armenia. I created the UI using NextJS, Typescript, MUI, TailwindCSS, Google Maps, Sun-Editor, and React Slick. The app supports multiple languages and currencies. I developed the API using NestJS, Typescript, MySQL, TypeORM, AWS, and Nodemailer. I deployed the front-end app to AWS Amplify and the back-end app to AWS EC2.',
-        tools: ['NextJS', 'Tailwind CSS', "Google Maps", "NestJS", "TypeScript", "MySQL", "AWS S3", "Sun-Editor", "Gmail Passkey"],
-        role: 'Full Stack Developer',
-        code: 'https://github.com/abhishekjais-124',
-        demo: 'https://github.com/abhishekjais-124',
-    },
-    {
-        id: 3,
-        name: 'AI Powered Real Estate',
-        description: 'My team built an AI-based real estate app using Replicate API and OpenAI. We used Express, Typescript, OpenAI, Replicate, Stripe, and Mongoose to develop the API. We utilized NextJS, Formik, TailwindCSS, and other npm libraries for the UI. We have trained multiple AI assistants using the latest GPT model and integrated Replicate API for image processing. We added role-based auth, subscription plans, Cron job scheduling, and payment integration with Stripe.',
-        tools: ['React', 'Bootstrap', 'SCSS', 'Stripe', 'Express', 'TypeScript', 'MongoDB', 'Azure Blob', 'OpenAI API', 'Replicate AI', 'Cronjob', 'JWT'],
-        code: 'https://github.com/abhishekjais-124',
-        role: 'Full Stack Developer',
-        demo: 'https://github.com/abhishekjais-124',
-    },
-    {
-        id: 4,
-        name: 'Newsroom Management',
-        description: "My team and I developed a newspaper management dashboard application called Newsroom Management. As a front-end developer, I worked on creating the dashboard using NextJS, Material UI, Redux, Calendar, and other necessary npm libraries. We used React Redux to manage the application's state and React-hook-form and Sun Editor to handle forms.",
-        tools: ['NextJS', 'Material UI', 'Redux', 'Sun Editor', "Calendar"],
-        code: 'https://github.com/abhishekjais-124',
-        demo: 'https://github.com/abhishekjais-124',
-        role: 'Full Stack Developer',
-    }
+  {
+    id: 1,
+    name: 'Airlearn – Live Trivia & Gamification Platform',
+    description:
+      "Built and scaled the Airlearn live trivia platform featuring a daily 9 PM IST quiz show with real-time question sync, answer validation, leaderboards, and payouts. Designed backend systems for low-latency events, WebSocket-based 1:N broadcasting, referral-based lifelines, and chat moderation. Implemented scheduling, state management, idempotent APIs, and observability to support high concurrency and real-time user engagement.",
+    tools: [
+      'Go',
+      'Python',
+      'WebSockets',
+      'REST APIs',
+      'Redis',
+      'PostgreSQL',
+      'Kafka',
+      'Docker',
+      'AWS',
+      'New Relic'
+    ],
+    role: 'Senior Backend Engineer',
+    code: '',
+    demo: 'https://airlearn.com/',
+  },
+  {
+    id: 2,
+    name: 'Galleria – E-commerce Platform',
+    description:
+      "Developed core backend services for an e-commerce platform including product catalog, cart, checkout, order management, and payment workflows. Focused on scalable API design, database modeling, and performance optimization. Implemented secure entication, inventory consistency, and reliable order processing with fault-tolerant workflows.",
+    tools: [
+      'Java',
+      'Spring Boot',
+      'MySQL',
+      'Redis',
+      'REST APIs',
+      'Docker',
+      'AWS S3',
+      'AWS EC2'
+    ],
+    role: 'Backend Engineer',
+    code: 'https://github.com/abhishekjais-124/Galleria-ecommerce-Website',
+    demo: '',
+  }
 ];
-
-
-// Do not remove any property.
-// Leave it blank instead as shown below
-
-// {
-//     id: 1,
-//     name: '',
-//     description: "",
-//     tools: [],
-//     role: '',
-//     code: '',
-//     demo: '',
-// },
