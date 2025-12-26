@@ -1,7 +1,7 @@
 "use client";
 // @flow strict
 import { isValidEmail } from "@/utils/check-email";
-import axios from "axios";
+import { send } from '@emailjs/browser';
 import { useState } from "react";
 import { TbMailForward } from "react-icons/tb";
 import { toast } from "react-toastify";
@@ -35,10 +35,24 @@ function ContactForm() {
 
     try {
       setIsLoading(true);
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_APP_URL}/api/contact`,
-        userInput
-      );
+
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        toast.error('Email service is not configured. Set NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, and NEXT_PUBLIC_EMAILJS_PUBLIC_KEY.');
+        setIsLoading(false);
+        return;
+      }
+
+      const templateParams = {
+        from_name: userInput.name,
+        reply_to: userInput.email,
+        message: userInput.message,
+      };
+
+      await send(serviceId, templateId, templateParams, publicKey);
 
       toast.success("Message sent successfully!");
       setUserInput({
@@ -47,7 +61,8 @@ function ContactForm() {
         message: "",
       });
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      console.error('EmailJS error:', error);
+      toast.error('Failed to send message. Please try again later.');
     } finally {
       setIsLoading(false);
     };

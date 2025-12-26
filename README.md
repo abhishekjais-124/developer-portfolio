@@ -124,7 +124,7 @@ This portfolio leverages the latest Next.js 16 and React 19 capabilities:
 | **Tailwind CSS** | 4.x     | Utility-first CSS framework               |
 | **SASS**         | Latest  | CSS preprocessor                          |
 | **Lottie**       | Latest  | Lightweight animations                    |
-| **Nodemailer**   | Latest  | Email sending functionality               |
+| **EmailJS**   | -  | Client-side email sending for static sites (EmailJS)               |
 | **Axios**        | Latest  | HTTP client for API requests              |
 | **Docker**       | -       | Containerization platform                 |
 
@@ -254,9 +254,10 @@ NEXT_PUBLIC_GTM=GTM-XXXXXXX
 # Your deployed app URL
 NEXT_PUBLIC_APP_URL=https://your-domain.com
 
-# Gmail Configuration (for contact form emails)
-GMAIL_PASSKEY=your_gmail_app_password
-EMAIL_ADDRESS=your_email@gmail.com
+# EmailJS Configuration (for client-side contact form)
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
 #### Variable Descriptions:
@@ -265,10 +266,11 @@ EMAIL_ADDRESS=your_email@gmail.com
 | --------------------- | -------- | -------------------------------------------- |
 | `NEXT_PUBLIC_GTM`     | No       | Google Tag Manager ID for analytics tracking |
 | `NEXT_PUBLIC_APP_URL` | Yes      | Your portfolio's public URL                  |
-| `GMAIL_PASSKEY`       | No       | Gmail app password for email notifications   |
-| `EMAIL_ADDRESS`       | No       | Your Gmail address for sending emails        |
+| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | No       | EmailJS service id for client-side email     |
+| `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | No       | EmailJS template id for client-side email   |
+| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`       | No       | EmailJS public key for client-side email    |
 
-> **Note**: Contact form features require Gmail configuration for email notifications.
+> **Note**: Contact form features require EmailJS configuration for static deployments.
 
 ---
 
@@ -372,19 +374,19 @@ docker-compose -f docker-compose.prod.yml up -d
 
 ## Tutorials :wrench:
 
-### 📧 Gmail App Password Setup
+### 📧 EmailJS Setup (recommended for static sites)
 
-1. Go to [https://myaccount.google.com/](https://myaccount.google.com/)
-2. Navigate to **Security** → **2-Step Verification** (enable if not already)
-3. Go to **Security** → **App Passwords**
-4. Select app: **Mail**, device: **Other (Custom name)**
-5. Generate and copy the 16-character password
-6. Add to `.env` file:
+1. Create an account at https://www.emailjs.com/ and add an email service (e.g., Gmail) and a template.
+2. Note the **Service ID**, **Template ID**, and your **Public Key** (or user ID).
+3. Add these to your `.env` file:
 
 ```env
-GMAIL_PASSKEY=abcd efgh ijkl mnop
-EMAIL_ADDRESS=your.email@gmail.com
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
+
+4. Update the template variables to include `from_name`, `reply_to`, and `message` (these are used by the contact form).
 
 
 ---
@@ -532,7 +534,7 @@ pnpm install
 
 - Verify Gmail App Password is correct (16 characters)
 - Check that 2-Step Verification is enabled on your Google account
-- Ensure `EMAIL_ADDRESS` matches the Gmail account
+- Ensure your EmailJS service/template are configured and tested
 - Test Telegram bot token and chat ID separately
 - Check browser console for error messages
 
