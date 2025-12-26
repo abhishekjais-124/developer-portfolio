@@ -94,3 +94,23 @@
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
 }
+
+/* Experience highlights reveal (in-flow expansion) */
+.experience-highlights {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  overflow: hidden;
+  transition: opacity 250ms ease, transform 250ms ease, max-height 350ms ease;
+}
+.glow-card:is(:hover, :focus-visible) .experience-highlights {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 320px; /* large enough for up to ~5 list items */
+}
+
+/* Slightly stronger contrast for list items */
+.experience-highlights ul li {
+  color: #cfd6e8;
+  line-height: 1.4;
+}

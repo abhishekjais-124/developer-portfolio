@@ -1,11 +1,27 @@
 // @flow strict
+"use client";
 
 import { experiences } from "@/utils/data/experience";
 import Image from "next/image";
+import { useState } from "react";
 import { BsPersonWorkspace } from "react-icons/bs";
 import experience from '../../../assets/lottie/code.json';
 import AnimationLottie from "../../helper/animation-lottie";
 import GlowCard from "../../helper/glow-card";
+
+function ImageWithFallback({ src, alt, width, height }) {
+  const [imgSrc, setImgSrc] = useState(src || '/png/placeholder.png');
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      className="object-contain rounded"
+      onError={() => setImgSrc('/png/placeholder.png')}
+    />
+  );
+}
 
 function Experience() {
   return (
@@ -62,10 +78,25 @@ function Experience() {
                               {experience.duration}
                             </p>
                           </div>
+                          <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+                            {experience.image ? (
+                              <div className="bg-[#0b0520]/70 rounded-md p-1 flex items-center justify-center shadow-md">
+                                <ImageWithFallback
+                                  src={experience.image}
+                                  alt={`${experience.company} logo`}
+                                  width={48}
+                                  height={48}
+                                />
+                              </div>
+                            ) : (
+                              <div className="text-violet-500 transition-all duration-300">
+                                <div className="bg-[#0b0520]/70 rounded-md p-2 flex items-center justify-center shadow-md">
+                                  <BsPersonWorkspace size={36} />
+                                </div>
+                              </div>
+                            )}
+                          </div>
                           <div className="flex items-center gap-x-8 px-3 py-5">
-                            <div className="text-violet-500  transition-all duration-300 hover:scale-125">
-                              <BsPersonWorkspace size={36} />
-                            </div>
                             <div>
                               <p className="text-base sm:text-xl mb-2 font-medium uppercase">
                                 {experience.title}
@@ -73,8 +104,16 @@ function Experience() {
                               <p className="text-sm sm:text-base">
                                 {experience.company}
                               </p>
+                              {/* Hidden highlights, revealed on hover (in-flow) */}
+                              <div className="experience-highlights mt-3 overflow-hidden max-h-0 opacity-0 transition-[max-height,opacity,transform] duration-300 ease-out text-sm text-[#cfd6e8]">
+                                <ul className="list-disc pl-5 space-y-1">
+                                  {experience.highlights?.slice(0,5).map((h, i) => (
+                                    <li key={i}>{h}</li>
+                                  ))}
+                                </ul>
+                              </div>
                             </div>
-                          </div>
+                          </div> 
                         </div>
                       </a>
                     ) : (
@@ -91,10 +130,25 @@ function Experience() {
                             {experience.duration}
                           </p>
                         </div>
+                        <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+                          {experience.image ? (
+                            <div className="bg-[#0b0520]/70 rounded-md p-1 flex items-center justify-center shadow-md">
+                              <ImageWithFallback
+                                src={experience.image}
+                                alt={`${experience.company} logo`}
+                                width={48}
+                                height={48}
+                              />
+                            </div>
+                          ) : (
+                            <div className="text-violet-500 transition-all duration-300">
+                              <div className="bg-[#0b0520]/70 rounded-md p-2 flex items-center justify-center shadow-md">
+                                <BsPersonWorkspace size={36} />
+                              </div>
+                            </div>
+                          )}
+                        </div>
                         <div className="flex items-center gap-x-8 px-3 py-5">
-                          <div className="text-violet-500  transition-all duration-300 hover:scale-125">
-                            <BsPersonWorkspace size={36} />
-                          </div>
                           <div>
                             <p className="text-base sm:text-xl mb-2 font-medium uppercase">
                               {experience.title}
@@ -102,6 +156,14 @@ function Experience() {
                             <p className="text-sm sm:text-base">
                               {experience.company}
                             </p>
+                            {/* Hidden highlights, revealed on hover (in-flow) */}
+                            <div className="experience-highlights mt-3 overflow-hidden max-h-0 opacity-0 transition-[max-height,opacity,transform] duration-300 ease-out text-sm text-[#cfd6e8]">
+                              <ul className="list-disc pl-5 space-y-1">
+                                {experience.highlights?.slice(0,5).map((h, i) => (
+                                  <li key={i}>{h}</li>
+                                ))}
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
