@@ -1,15 +1,16 @@
-const path = require('path')
+const path = require("path");
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',          // ✅ IMPORTANT
-  trailingSlash: true,       // ✅ avoids 404 on refresh
+module.exports = {
+  output: "export",            // ✅ static export
   images: {
-    unoptimized: true,       // ✅ REQUIRED for static export
+    unoptimized: true,         // ✅ required for static hosting
+    remotePatterns: [
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "media.dev.to" },
+      { protocol: "https", hostname: "media2.dev.to" },
+    ],
   },
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, "styles")],
   },
-}
-
-module.exports = nextConfig
+};
