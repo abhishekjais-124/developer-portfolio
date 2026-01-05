@@ -1,20 +1,17 @@
 export const projectsData = [
   {
     id: 1,
-    name: 'Airlearn – Live Trivia & Gamification Platform',
+    name: 'Airlearn - Language Learning Platform',
     description:
-      "Built and scaled the Airlearn live trivia platform featuring a daily 9 PM IST quiz show with real-time question sync, answer validation, leaderboards, and payouts. Designed backend systems for low-latency events, WebSocket-based 1:N broadcasting, referral-based lifelines, and chat moderation. Implemented scheduling, state management, idempotent APIs, and observability to support high concurrency and real-time user engagement.",
+      "Built scalable backend services for Airlearn, a language learning platform leveraging AI for interactive lessons and real-time feedback. Developed RESTful APIs, integrated AI models for personalized learning paths, and optimized performance to handle thousands of concurrent users. Implemented robust data storage solutions and ensured high availability using cloud infrastructure.",
     tools: [
       'Go',
       'Python',
       'WebSockets',
       'REST APIs',
       'Redis',
-      'PostgreSQL',
-      'Kafka',
       'Docker',
-      'AWS',
-      'New Relic'
+      'AWS'
     ],
     role: 'Senior Backend Engineer',
     code: '',
@@ -22,18 +19,17 @@ export const projectsData = [
   },
   {
     id: 2,
-    name: 'Galleria – E-commerce Platform',
+    name: 'Galleria - E-commerce Platform',
     description:
-      "Developed core backend services for an e-commerce platform including product catalog, cart, checkout, order management, and payment workflows. Focused on scalable API design, database modeling, and performance optimization. Implemented secure entication, inventory consistency, and reliable order processing with fault-tolerant workflows.",
+      "Developed the backend for Galleria, an e-commerce platform specializing in art and collectibles. Designed and implemented RESTful APIs for product management, user authentication, and order processing. Integrated payment gateways and optimized database queries to ensure fast load times and a seamless shopping experience. Utilized Docker for containerization and deployed services on AWS for scalability.",
     tools: [
-      'Java',
-      'Spring Boot',
+      'Python',
+      'Django',
       'MySQL',
       'Redis',
       'REST APIs',
       'Docker',
-      'AWS S3',
-      'AWS EC2'
+      'AWS'
     ],
     role: 'Backend Engineer',
     code: 'https://github.com/abhishekjais-124/Galleria-ecommerce-Website',

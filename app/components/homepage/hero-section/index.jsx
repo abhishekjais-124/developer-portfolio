@@ -4,7 +4,7 @@ import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import Link from "next/link";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { SiLeetcode } from "react-icons/si";
@@ -51,17 +51,6 @@ function HeroSection() {
                 aria-label="LinkedIn"
               >
                 <BsLinkedin size={30} />
-              </Link>
-            )}
-
-            {personalData.facebook && (
-              <Link
-                href={personalData.facebook}
-                target='_blank'
-                className="transition-all text-pink-500 hover:scale-125 duration-300"
-                aria-label="Facebook"
-              >
-                <FaFacebook size={30} />
               </Link>
             )}
 

@@ -1,0 +1,18 @@
+export const leetcodeProfile = {
+  handle: "jabhi_18",
+  name: "Abhishek Jaiswal",
+  rating: 2204,
+  level: "Guardian",
+  rankGlobal: "6,813 / 809,188",
+  topPercent: "0.89%",
+  contests: 36,
+  badge: "Guardian (very rare)",
+  solvedTotal: 881,
+  solvedEasy: 244,
+  solvedMedium: 468,
+  solvedHard: 169,
+  activeDays: 23,
+  maxStreak: 9,
+  solutionsPublished: 25,
+  profileViews: 4300,
+};

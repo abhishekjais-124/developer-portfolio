@@ -3,7 +3,7 @@ import { personalData } from '@/utils/data/personal-data';
 import Link from 'next/link';
 import { BiLogoLinkedin } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
 import { IoLogoGithub, IoMdCall } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import { SiLeetcode } from "react-icons/si";
@@ -79,15 +79,6 @@ function ContactSection() {
             {personalData.leetcode && (
               <Link target="_blank" href={personalData.leetcode} aria-label="LeetCode">
                 <SiLeetcode
-                  className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
-                  size={48}
-                />
-              </Link>
-            )}
-
-            {personalData.facebook && (
-              <Link target="_blank" href={personalData.facebook} aria-label="Facebook">
-                <FaFacebook
                   className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
                   size={48}
                 />

@@ -10,8 +10,6 @@ export const personalData = {
   linkedin: "https://www.linkedin.com/in/abhi124",
   // backward-compatible alias used by other components
   linkedIn: "https://www.linkedin.com/in/abhi124",
-  // optional Facebook profile (used in some components)
-  facebook: "https://www.facebook.com/yourprofile",
   instagram: "https://instagram.com/yourprofile",
   leetcode: "https://leetcode.com/u/jabhi_18",
   devUsername: "abhi124",
