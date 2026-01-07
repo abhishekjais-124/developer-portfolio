@@ -15,9 +15,8 @@ function LeetCodeSection() {
         <div className="flex items-center justify-between gap-3 flex-wrap mb-8">
           <div className="flex items-center gap-3">
             <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#7c5dff] to-[#19e6ff] text-[#0b0d17] text-sm font-semibold shadow-[0_12px_30px_rgba(25,230,255,0.25)]">
-              LeetCode Highlights
+              LeetCode
             </span>
-            <span className="text-[#c9d7ff] font-semibold text-sm">@{p.handle}</span>
           </div>
           <div className="flex items-center gap-4 flex-wrap">
             <Link

@@ -13,5 +13,7 @@ export const personalData = {
   instagram: "https://instagram.com/yourprofile",
   leetcode: "https://leetcode.com/u/jabhi_18",
   devUsername: "abhi124",
-  resume: "https://drive.google.com/file/d/10HVraDNws8YxkR9bP069HtwvHa_Q5LsN/view"
+  resume: "https://drive.google.com/file/d/10HVraDNws8YxkR9bP069HtwvHa_Q5LsN/view",
+  linkedinFollowers: "7700+",
+  githubRepositories: "60+"
 };

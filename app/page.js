@@ -4,11 +4,13 @@ import ContactSection from "./components/homepage/contact";
 import Education from "./components/homepage/education";
 import Achievements from "./components/homepage/achievements";
 import Recommendations from "./components/homepage/recommendations";
-import LeetCodeSection from "./components/homepage/leetcode";
+// import LeetCodeSection from "./components/homepage/leetcode";
 import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
+import Highlights from "./components/homepage/highlights";
+import CodingProfiles from "./components/homepage/coding-profiles";
 
 export default async function Home() {
   return (
@@ -19,8 +21,9 @@ export default async function Home() {
       <Skills />
       <Projects />
       <Education />
+      <Highlights />
+      <CodingProfiles />
       <Achievements />
-      <LeetCodeSection />
       <Recommendations />
       <ContactSection />
     </div>
