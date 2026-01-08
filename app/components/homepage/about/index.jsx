@@ -21,6 +21,18 @@ function AboutSection() {
           <p className="text-gray-200 text-sm lg:text-lg">
             {personalData.description}
           </p>
+          <div className="mt-6 pt-6 border-t border-[#25213b]">
+            <p className="font-medium mb-3 text-[#16f2b3] text-sm uppercase">
+              My Interests
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {personalData.hobbies.map((hobby, index) => (
+                <span key={index} className="px-3 py-1 rounded-full bg-[#16f2b3]/10 border border-[#16f2b3]/30 text-[#16f2b3] text-sm">
+                  {hobby}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
         <div className="flex justify-center order-1 lg:order-2">
           <Image

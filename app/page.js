@@ -11,6 +11,7 @@ import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
 import Highlights from "./components/homepage/highlights";
 import CodingProfiles from "./components/homepage/coding-profiles";
+import HobbiesSection from "./components/homepage/hobbies";
 
 export default async function Home() {
   return (
@@ -23,6 +24,7 @@ export default async function Home() {
       <Education />
       <Highlights />
       <CodingProfiles />
+      <HobbiesSection />
       <Achievements />
       <Recommendations />
       <ContactSection />

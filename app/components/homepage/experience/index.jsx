@@ -24,6 +24,8 @@ function ImageWithFallback({ src, alt, width, height }) {
 }
 
 function Experience() {
+  const [expandedId, setExpandedId] = useState(null);
+
   return (
     <div id="experience" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
       <Image
@@ -64,6 +66,8 @@ function Experience() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block"
+                        onMouseEnter={() => setExpandedId(experience.id)}
+                        onMouseLeave={() => setExpandedId(null)}
                       >
                         <div className="p-3 relative cursor-pointer">
                           <Image
@@ -97,7 +101,7 @@ function Experience() {
                             )}
                           </div>
                           <div className="flex items-center gap-x-8 px-3 py-5">
-                            <div>
+                            <div className="flex-1">
                               <p className="text-base sm:text-xl mb-2 font-medium uppercase">
                                 {experience.title}
                               </p>
@@ -105,7 +109,14 @@ function Experience() {
                                 {experience.company}
                               </p>
                               {/* Hidden highlights, revealed on hover (in-flow) */}
-                              <div className="experience-highlights mt-3 overflow-hidden max-h-0 opacity-0 transition-[max-height,opacity,transform] duration-300 ease-out text-sm text-[#cfd6e8]">
+                              <div 
+                                className="experience-highlights mt-3 overflow-hidden opacity-0 transition-all duration-500 ease-in-out text-sm text-[#cfd6e8]"
+                                style={{
+                                  maxHeight: expandedId === experience.id ? '200px' : '0px',
+                                  opacity: expandedId === experience.id ? 1 : 0,
+                                  marginTop: expandedId === experience.id ? '12px' : '0px'
+                                }}
+                              >
                                 <ul className="list-disc pl-5 space-y-1">
                                   {experience.highlights?.slice(0,5).map((h, i) => (
                                     <li key={i}>{h}</li>
@@ -117,7 +128,11 @@ function Experience() {
                         </div>
                       </a>
                     ) : (
-                      <div className="p-3 relative">
+                      <div 
+                        className="p-3 relative"
+                        onMouseEnter={() => setExpandedId(experience.id)}
+                        onMouseLeave={() => setExpandedId(null)}
+                      >
                         <Image
                           src="/blur-23.svg"
                           alt="Hero"
@@ -149,7 +164,7 @@ function Experience() {
                           )}
                         </div>
                         <div className="flex items-center gap-x-8 px-3 py-5">
-                          <div>
+                          <div className="flex-1">
                             <p className="text-base sm:text-xl mb-2 font-medium uppercase">
                               {experience.title}
                             </p>
@@ -157,7 +172,14 @@ function Experience() {
                               {experience.company}
                             </p>
                             {/* Hidden highlights, revealed on hover (in-flow) */}
-                            <div className="experience-highlights mt-3 overflow-hidden max-h-0 opacity-0 transition-[max-height,opacity,transform] duration-300 ease-out text-sm text-[#cfd6e8]">
+                            <div 
+                              className="experience-highlights mt-3 overflow-hidden opacity-0 transition-all duration-500 ease-in-out text-sm text-[#cfd6e8]"
+                              style={{
+                                maxHeight: expandedId === experience.id ? '200px' : '0px',
+                                opacity: expandedId === experience.id ? 1 : 0,
+                                marginTop: expandedId === experience.id ? '12px' : '0px'
+                              }}
+                            >
                               <ul className="list-disc pl-5 space-y-1">
                                 {experience.highlights?.slice(0,5).map((h, i) => (
                                   <li key={i}>{h}</li>

@@ -53,10 +53,15 @@ function Education() {
                         height={200}
                         className="absolute bottom-0 opacity-80"
                       />
-                      <div className="flex justify-center">
+                      <div className="flex justify-between items-center px-3">
                         <p className="text-xs sm:text-sm text-[#16f2b3]">
                           {education.duration}
                         </p>
+                        {education.achievement && (
+                          <p className="text-xs sm:text-sm font-bold bg-gradient-to-r from-[#16f2b3] to-cyan-400 bg-clip-text text-transparent">
+                            {education.achievement}
+                          </p>
+                        )}
                       </div>
                       <div className="flex items-center gap-x-8 px-3 py-5">
                         <div className="text-violet-500  transition-all duration-300 hover:scale-125">
