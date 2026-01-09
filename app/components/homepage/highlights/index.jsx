@@ -6,6 +6,7 @@ import Image from "next/image";
 import GlowCard from "../../helper/glow-card";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { SiLeetcode } from "react-icons/si";
+import { FiTrendingUp } from "react-icons/fi";
 
 function Highlights() {
   const highlights = [
@@ -51,36 +52,46 @@ function Highlights() {
         className="absolute top-0 -z-10"
       />
 
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex items-center">
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-          <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
-            Highlights
-          </span>
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+      <div className="flex justify-center my-6 lg:py-10">
+        <div className="flex flex-col items-center gap-3">
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-pink-500/60 to-transparent" />
+            <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm md:text-base font-semibold text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur flex items-center gap-2">
+              <FiTrendingUp className="text-pink-400" size={18} />
+              Highlights
+            </span>
+            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#16f2b3]/60 to-transparent" />
+          </div>
+          <p className="text-xs sm:text-sm text-[#c7d2ff]/80 max-w-2xl text-center px-4">
+            Key metrics and achievements that reflect my technical journey and community impact.
+          </p>
         </div>
       </div>
 
       <div className="relative py-10 lg:py-16">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {highlights.map((item) => (
-              <GlowCard key={item.id} identifier={`highlight-${item.id}`}>
-                <div className={`p-6 rounded-lg bg-gradient-to-br ${item.gradient} border ${item.border} shadow-lg ${item.shadow} h-full flex flex-col justify-between`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <p className="text-sm text-gray-300 uppercase tracking-wider mb-2">
+              <GlowCard key={item.id} identifier={`highlight-${item.id}`} className="h-full">
+                <div className={`relative p-6 lg:p-8 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] h-full flex flex-col justify-between group hover:border-${item.border.split('-')[1]}/30 transition-all duration-500 overflow-hidden`}>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-30 group-hover:opacity-50 transition-opacity duration-500`} />
+                  <div className="absolute -top-16 -right-16 h-32 w-32 rounded-full bg-${item.shadow.split('-')[1]}/20 blur-3xl group-hover:bg-${item.shadow.split('-')[1]}/30 transition-all duration-700" />
+                  
+                  <div className="relative z-10 flex items-start justify-between mb-6">
+                    <div className="flex-1">
+                      <p className="text-xs text-gray-300 uppercase tracking-[0.14em] mb-3 font-medium">
                         {item.title}
                       </p>
-                      <p className="text-4xl font-bold text-white mb-2">
+                      <p className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
                         {item.value}
                       </p>
                     </div>
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 p-3 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
                       {item.icon}
                     </div>
                   </div>
-                  <p className="text-sm text-gray-400">
+                  
+                  <p className="relative z-10 text-sm text-gray-300 leading-relaxed">
                     {item.description}
                   </p>
                 </div>

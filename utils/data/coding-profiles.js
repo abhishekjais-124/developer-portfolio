@@ -46,21 +46,6 @@ export const codingProfiles = [
   },
   {
     id: 4,
-    name: "HackerRank",
-    handle: "abhishekjaiswa12",
-    problemsSolved: 280,
-    rating: 2050,
-    level: "6-Star",
-    badges: "6 Stars",
-    profileUrl: "https://www.hackerrank.com/profile/abhishekjaiswa12",
-    icon: "SiHackerrank",
-    gradient: "from-green-500/20 to-emerald-500/20",
-    border: "border-green-500/50",
-    shadow: "shadow-green-500/20",
-    color: "text-green-500"
-  },
-  {
-    id: 5,
     name: "HackerEarth",
     handle: "abhishek5254",
     problemsSolved: 202,
@@ -73,5 +58,20 @@ export const codingProfiles = [
     border: "border-indigo-500/50",
     shadow: "shadow-indigo-500/20",
     color: "text-indigo-500"
+  },
+  {
+    id: 5,
+    name: "HackerRank",
+    handle: "abhishekjaiswa12",
+    problemsSolved: 280,
+    rating: 2050,
+    level: "6-Star",
+    badges: "6 Stars",
+    profileUrl: "https://www.hackerrank.com/profile/abhishekjaiswa12",
+    icon: "SiHackerrank",
+    gradient: "from-green-500/20 to-emerald-500/20",
+    border: "border-green-500/50",
+    shadow: "shadow-green-500/20",
+    color: "text-green-500"
   }
 ];

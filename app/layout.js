@@ -1,5 +1,5 @@
 import { GoogleTagManager } from "@next/third-parties/google";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/footer";
@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import "./css/card.scss";
 import "./css/globals.scss";
 const inter = Inter({ subsets: ["latin"] });
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata = {
   title: "Portfolio of Abhishek - Software Developer",
@@ -18,9 +19,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${display.variable} bg-[#050915] antialiased`}>
+        <div className="pointer-events-none fixed inset-0 -z-20">
+          <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_15%_20%,rgba(22,242,179,0.18),transparent_45%),radial-gradient(120%_120%_at_80%_-10%,rgba(106,90,249,0.22),transparent_40%)]" />
+          <div className="absolute inset-0 opacity-25 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:120px_120px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(244,114,182,0.14),transparent_35%),radial-gradient(circle_at_90%_60%,rgba(22,242,179,0.12),transparent_32%)] opacity-60" />
+        </div>
         <ToastContainer />
-        <main className="min-h-screen relative mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white">
+        <main className="min-h-screen relative mx-auto px-6 sm:px-10 lg:max-w-[72rem] xl:max-w-[78rem] 2xl:max-w-[94rem] text-white pb-12">
           <Navbar />
           {children}
           <ScrollToTop />

@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import GlowCard from "../../helper/glow-card";
 import { SiLeetcode, SiCodeforces, SiCodechef, SiHackerrank, SiHackerearth } from "react-icons/si";
+import { FiCode } from "react-icons/fi";
 
 const iconMap = {
   SiLeetcode: <SiLeetcode size={40} />,
@@ -27,60 +28,73 @@ function CodingProfiles() {
         className="absolute top-0 -z-10"
       />
 
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex items-center">
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-          <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
-            Coding Profiles
-          </span>
-          <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+      <div className="flex justify-center my-6 lg:py-10">
+        <div className="flex flex-col items-center gap-3">
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#7c5dff]/60 to-transparent" />
+            <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm md:text-base font-semibold text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur flex items-center gap-2">
+              <FiCode className="text-[#7c5dff]" size={18} />
+              Coding Profiles
+            </span>
+            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#19e6ff]/60 to-transparent" />
+          </div>
+          <p className="text-xs sm:text-sm text-[#c7d2ff]/80 max-w-2xl text-center px-4">
+            Competitive programming achievements across leading platforms.
+          </p>
         </div>
       </div>
 
       <div className="relative py-10 lg:py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 auto-rows-fr">
-            {codingProfiles.map((profile) => (
-              <GlowCard key={profile.id} identifier={`coding-profile-${profile.id}`}>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 auto-rows-fr">
+            {codingProfiles.map((profile, index) => (
+              <div key={profile.id} className={index === 4 ? "col-span-2 md:col-span-1" : ""}>
+                <GlowCard identifier={`coding-profile-${profile.id}`} className="h-full">
                 <Link href={profile.profileUrl} target="_blank" rel="noopener noreferrer" className="block h-full">
-                  <div className={`p-6 rounded-lg bg-gradient-to-br ${profile.gradient} border ${profile.border} shadow-lg ${profile.shadow} min-h-[320px] flex flex-col justify-between hover:shadow-2xl transition-all duration-300 cursor-pointer`}>
-                    <div className="flex flex-col items-center text-center mb-4">
-                      <div className={`${profile.color} mb-3`}>
-                        {iconMap[profile.icon]}
+                  <div className={`relative p-6 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] min-h-[320px] flex flex-col justify-between group hover:border-white/20 transition-all duration-500 overflow-hidden cursor-pointer`}>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${profile.gradient} opacity-30 group-hover:opacity-50 transition-opacity duration-500`} />
+                    <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-gradient-to-br from-[#7c5dff]/20 to-[#19e6ff]/20 blur-2xl group-hover:blur-3xl transition-all duration-700" />
+                    
+                    <div className="relative z-10 flex flex-col items-center text-center mb-4">
+                      <div className="p-3 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300 mb-3">
+                        <div className={`${profile.color}`}>
+                          {iconMap[profile.icon]}
+                        </div>
                       </div>
-                      <p className="text-lg font-bold text-white mb-2">
+                      <p className="text-lg font-bold text-white mb-2 group-hover:text-[#7c5dff] transition-colors">
                         {profile.name}
                       </p>
-                      <p className="text-xs text-gray-400 break-all">
+                      <p className="text-xs text-gray-400 break-all px-2">
                         @{profile.handle}
                       </p>
                     </div>
 
-                    <div className="space-y-2 text-center">
+                    <div className="relative z-10 space-y-3 text-center">
                       {profile.rating && (
-                        <div>
-                          <p className="text-xs text-gray-300">Rating</p>
+                        <div className="px-3 py-2 rounded-lg bg-white/5 border border-white/10">
+                          <p className="text-xs text-gray-300 mb-1">Rating</p>
                           <p className="text-xl font-bold text-white">{profile.rating}</p>
                         </div>
                       )}
                       {profile.level && (
-                        <div>
-                          <p className="text-xs text-gray-300">{profile.level}</p>
+                        <div className="px-2 py-1 rounded-full bg-gradient-to-r from-[#7c5dff]/20 to-[#19e6ff]/20 border border-[#7c5dff]/30">
+                          <p className="text-xs text-[#19e6ff] font-semibold">{profile.level}</p>
                         </div>
                       )}
-                      <div>
-                        <p className="text-xs text-gray-300">Problems Solved</p>
+                      <div className="px-3 py-2 rounded-lg bg-white/5 border border-white/10">
+                        <p className="text-xs text-gray-300 mb-1">Problems Solved</p>
                         <p className="text-lg font-bold text-white">{profile.problemsSolved}+</p>
                       </div>
                       {profile.badges && (
                         <div className="pt-2 border-t border-white/10">
-                          <p className="text-xs text-gray-300">{profile.badges}</p>
+                          <p className="text-xs text-[#19e6ff] font-medium">{profile.badges}</p>
                         </div>
                       )}
                     </div>
                   </div>
                 </Link>
               </GlowCard>
+              </div>
             ))}
           </div>
 

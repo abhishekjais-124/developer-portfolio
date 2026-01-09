@@ -4,33 +4,51 @@ import { leetcodeProfile } from "@/utils/data/leetcode";
 import Image from "next/image";
 import Link from "next/link";
 import GlowCard from "../../helper/glow-card";
+import { SiLeetcode } from "react-icons/si";
+import { FiExternalLink, FiAward } from "react-icons/fi";
 
 function LeetCodeSection() {
   const p = leetcodeProfile;
   return (
     <section id="leetcode" className="lc-wrap relative z-40 border-t border-[#25213b] py-14">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(120%_140%_at_20%_10%,rgba(82,113,255,0.18),transparent_55%),radial-gradient(90%_120%_at_80%_0%,rgba(0,224,255,0.16),transparent_60%),#060811]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30" style={{backgroundImage:"radial-gradient(circle at 30% 25%, rgba(124,93,255,0.18) 0, transparent 35%), radial-gradient(circle at 70% 50%, rgba(25,230,255,0.2) 0, transparent 30%)"}} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between gap-3 flex-wrap mb-8">
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#7c5dff] to-[#19e6ff] text-[#0b0d17] text-sm font-semibold shadow-[0_12px_30px_rgba(25,230,255,0.25)]">
-              LeetCode
-            </span>
+        <div className="flex justify-center mb-10">
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex items-center gap-3">
+              <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#7c5dff]/60 to-transparent" />
+              <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm md:text-base font-semibold text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur flex items-center gap-2">
+                <SiLeetcode className="text-[#ffa116]" size={20} />
+                LeetCode Stats
+              </span>
+              <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#19e6ff]/60 to-transparent" />
+            </div>
+            <p className="text-xs sm:text-sm text-[#c7d2ff]/80 max-w-2xl text-center px-4">
+              Competitive programming journey with 880+ problems solved and Guardian badge.
+            </p>
           </div>
-          <div className="flex items-center gap-4 flex-wrap">
+        </div>
+        
+        <div className="flex items-center justify-between gap-3 flex-wrap mb-8 bg-gradient-to-r from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+          <div className="flex items-center gap-3">
             <Link
               href={`https://leetcode.com/u/${p.handle}/`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1 rounded-full border border-white/10 text-[#dfe7ff] text-sm font-semibold hover:text-white hover:border-white/30 transition-colors"
+              className="px-4 py-2 rounded-full bg-gradient-to-r from-[#7c5dff] to-[#19e6ff] text-white text-sm font-semibold shadow-[0_8px_24px_rgba(25,230,255,0.3)] hover:shadow-[0_8px_32px_rgba(25,230,255,0.45)] transition-all duration-300 flex items-center gap-2"
             >
-              View Profile
+              <span>View Profile</span>
+              <FiExternalLink size={14} />
             </Link>
-            <span className="flex items-center gap-2 text-[#8fa2ff] text-xs uppercase tracking-[0.2em]">
-              <Image src="/image/guardian.png" alt="Guardian badge" width={28} height={28} className="h-7 w-7 rounded-full" />
-              Guardian Badge
-            </span>
+          </div>
+          <div className="flex items-center gap-3 px-3 py-2 rounded-full bg-gradient-to-r from-amber-500/10 to-yellow-500/10 border border-amber-500/20">
+            <Image src="/image/guardian.png" alt="Guardian badge" width={28} height={28} className="h-7 w-7 rounded-full" />
+            <div className="flex items-center gap-2 text-amber-300">
+              <FiAward size={16} />
+              <span className="text-xs font-semibold uppercase tracking-wider">Guardian</span>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -89,46 +107,62 @@ function LeetCodeSection() {
         .lc-card {
           position: relative;
           overflow: hidden;
-          padding: 18px 18px 20px;
-          border-radius: 18px;
-          background: linear-gradient(145deg, rgba(15, 18, 34, 0.9), rgba(9, 11, 23, 0.95));
-          border: 1px solid rgba(255, 255, 255, 0.06);
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35),
-            0 0 18px rgba(255, 109, 255, 0.08),
-            inset 0 0 1px rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(12px);
+          padding: 20px;
+          border-radius: 20px;
+          background: linear-gradient(145deg, rgba(13, 18, 40, 0.85), rgba(10, 13, 30, 0.9));
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
+            0 0 20px rgba(124, 93, 255, 0.1),
+            inset 0 0 1px rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(16px);
           color: #e6f0ff;
           animation: fadeIn 420ms ease;
+          transition: all 0.4s ease;
+        }
+        .lc-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45),
+            0 0 30px rgba(124, 93, 255, 0.15),
+            inset 0 0 1px rgba(255, 255, 255, 0.12);
         }
         .lc-card::after {
           content: "";
           position: absolute;
           inset: -40% 50%;
-          background: radial-gradient(circle at center, rgba(255, 0, 204, 0.16), transparent 55%);
+          background: radial-gradient(circle at center, rgba(124, 93, 255, 0.2), transparent 55%);
           transform: rotate(8deg);
-          opacity: 0.8;
-          animation: drift 8s ease-in-out infinite alternate;
+          opacity: 0.6;
+          animation: drift 10s ease-in-out infinite alternate;
           pointer-events: none;
         }
         .lc-label {
-          font-size: 13px;
-          letter-spacing: 0.3px;
-          color: #8fa2ff;
+          font-size: 12px;
+          letter-spacing: 0.15em;
+          color: #7c9eff;
           text-transform: uppercase;
+          font-weight: 600;
         }
         .lc-value {
-          font-size: 32px;
+          font-size: 36px;
           font-weight: 800;
-          letter-spacing: 0.2px;
+          letter-spacing: -0.5px;
           display: flex;
           align-items: baseline;
-          gap: 10px;
-          margin-top: 6px;
+          gap: 12px;
+          margin-top: 8px;
+          background: linear-gradient(135deg, #ffffff, #a8c0ff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
         .lc-sub {
-          font-size: 14px;
-          font-weight: 600;
-          color: #7ce7ff;
+          font-size: 15px;
+          font-weight: 700;
+          color: #5cf8d1;
+          background: linear-gradient(135deg, #5cf8d1, #19e6ff);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
         .lc-rank {
           margin-top: 4px;
@@ -136,23 +170,31 @@ function LeetCodeSection() {
           font-size: 14px;
         }
         .lc-badge {
-          margin-top: 10px;
+          margin-top: 12px;
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 8px 12px;
+          gap: 10px;
+          padding: 10px 14px;
           border-radius: 999px;
-          background: linear-gradient(120deg, rgba(124, 93, 255, 0.16), rgba(25, 230, 255, 0.12));
+          background: linear-gradient(120deg, rgba(124, 93, 255, 0.2), rgba(25, 230, 255, 0.15));
           color: #f7f2ff;
-          font-weight: 600;
-          box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+          font-weight: 700;
+          font-size: 14px;
+          box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+            0 4px 12px rgba(124, 93, 255, 0.2);
         }
         .dot {
-          width: 8px;
-          height: 8px;
+          width: 9px;
+          height: 9px;
           border-radius: 50%;
-          background: #ffd166;
-          box-shadow: 0 0 12px rgba(255, 209, 102, 0.7);
+          background: linear-gradient(135deg, #ffd166, #ffb347);
+          box-shadow: 0 0 16px rgba(255, 209, 102, 0.8),
+            0 0 4px rgba(255, 209, 102, 0.6);
+          animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.1); opacity: 0.9; }
         }
         .lc-bars {
           display: grid;

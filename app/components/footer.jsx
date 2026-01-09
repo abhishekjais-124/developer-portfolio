@@ -1,20 +1,45 @@
 // @flow strict
 import Link from 'next/link';
+import { personalData } from '@/utils/data/personal-data';
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
+import { FaInstagram } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 
 function Footer() {
   return (
-    <div className="relative border-t bg-[#0d1224] border-[#353951] text-white">
-      <div className="mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-6 lg:py-10">
-        <div className="flex justify-center -z-40">
-          <div className="absolute top-0 h-[1px] w-1/2  bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
-        </div>
-        <div className="flex items-center justify-center">
-          <p className="text-sm text-center">
-            © Developer Portfolio by <Link target="_blank" href="https://www.linkedin.com/in/abu-said-bd/" className="text-[#16f2b3]">Abhishek</Link>
+    <footer className="relative mt-12 border-t border-white/10 bg-[#050915]/80 text-white">
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 bg-[radial-gradient(circle_at_20%_20%,rgba(22,242,179,0.16),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(106,90,249,0.2),transparent_32%)]" />
+      <div className="mx-auto px-6 sm:px-12 lg:max-w-[72rem] xl:max-w-[78rem] 2xl:max-w-[94rem] py-8 lg:py-10">
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex items-center gap-3">
+            {personalData.github && (
+              <Link target="_blank" href={personalData.github} aria-label="GitHub" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:border-white/30 transition-all duration-200">
+                <BsGithub size={18} />
+              </Link>
+            )}
+            {personalData.linkedIn && (
+              <Link target="_blank" href={personalData.linkedIn} aria-label="LinkedIn" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:border-white/30 transition-all duration-200">
+                <BsLinkedin size={18} />
+              </Link>
+            )}
+            {personalData.leetcode && (
+              <Link target="_blank" href={personalData.leetcode} aria-label="LeetCode" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:border-white/30 transition-all duration-200">
+                <SiLeetcode size={18} />
+              </Link>
+            )}
+            {personalData.instagram && (
+              <Link target="_blank" href={personalData.instagram} aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:border-white/30 transition-all duration-200">
+                <FaInstagram size={18} />
+              </Link>
+            )}
+          </div>
+
+          <p className="text-sm text-center text-white/60">
+            © {new Date().getFullYear()} Crafted by <span className="text-white">{personalData.name}</span>. Built with care and plenty of coffee.
           </p>
         </div>
       </div>
-    </div >
+    </footer>
   );
 };
 

@@ -7,6 +7,7 @@ import Link from "next/link";
 import GlowCard from "../../helper/glow-card";
 import { FaPlane, FaMap, FaCamera, FaGamepad } from "react-icons/fa";
 import { SiYoutube } from "react-icons/si";
+import { FiHeart } from "react-icons/fi";
 import { useState } from "react";
 
 function HobbiesSection() {
@@ -16,7 +17,7 @@ function HobbiesSection() {
     {
       id: 1,
       title: "Gaming",
-      description: "Playing and exploring latest games in my free time",
+      description: "Playing, watching, and exploring latest games in my free time",
       icon: <FaGamepad size={40} className="text-orange-500" />,
       gradient: "from-orange-500/20 to-pink-500/20",
       border: "border-orange-500/50",
@@ -27,24 +28,24 @@ function HobbiesSection() {
     {
       id: 2,
       title: "Travelling",
-      description: "Exploring new destinations and experiencing diverse cultures",
+      description: "Exploring new places and experiencing diverse cultures",
       icon: <FaPlane size={40} className="text-blue-500" />,
       gradient: "from-blue-500/20 to-cyan-500/20",
       border: "border-blue-500/50",
       shadow: "shadow-blue-500/20",
       link: null,
-      stats: "Always on the go!"
+      stats: "Let's travel!"
     },
     {
       id: 3,
-      title: "Exploring Places",
-      description: "Discovering hidden gems and local experiences",
+      title: "Exploring",
+      description: "Discovering hidden gems, unique spots, and local experiences",
       icon: <FaMap size={40} className="text-emerald-500" />,
       gradient: "from-emerald-500/20 to-teal-500/20",
       border: "border-emerald-500/50",
       shadow: "shadow-emerald-500/20",
       link: null,
-      stats: "Wanderlust"
+      stats: "Let's explore!"
     },
     {
       id: 4,
@@ -55,7 +56,7 @@ function HobbiesSection() {
       border: "border-purple-500/50",
       shadow: "shadow-purple-500/20",
       link: null,
-      stats: "Visual storytelling"
+      stats: "Let's capture!"
     }
   ];
 
@@ -87,21 +88,22 @@ function HobbiesSection() {
         className="absolute top-0 -z-10"
       />
 
-      <div className="flex justify-center my-5 lg:py-8">
+      <div className="flex justify-center my-6 lg:py-10">
         <div className="flex flex-col items-center gap-3">
-          <div className="flex items-center">
-            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
-            <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-pink-500/60 to-transparent" />
+            <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm md:text-base font-semibold text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur flex items-center gap-2">
+              <FiHeart className="text-pink-400" size={18} />
               Interests & Hobbies
             </span>
-            <span className="w-24 h-[2px] bg-[#1a1443]"></span>
+            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#16f2b3]/60 to-transparent" />
           </div>
           <button
             onClick={() => setSelectedVideo("2SM-cJ_SbHg")}
-            className="hover:scale-110 transition-transform duration-300"
+            className="hover:scale-110 transition-transform duration-300 p-2 rounded-full hover:bg-red-500/10"
             title="Watch on YouTube"
           >
-            <SiYoutube size={32} className="text-red-500 hover:text-red-400" />
+            <SiYoutube size={28} className="text-red-500 hover:text-red-400" />
           </button>
         </div>
       </div>
@@ -112,46 +114,57 @@ function HobbiesSection() {
             Beyond coding, I love exploring new places, traveling around the world, and sharing my tech journey through content creation.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {hobbiesContent.map((item) => (
-              <GlowCard key={item.id} identifier={`hobby-${item.id}`}>
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {hobbiesContent.map((item, index) => (
+              <div key={item.id} className={index === hobbiesContent.length - 1 && hobbiesContent.length % 2 === 1 ? "col-span-2 md:col-span-1" : ""}>
+                <GlowCard identifier={`hobby-${item.id}`} className="h-full">
                 <div className="h-full">
                   {item.link ? (
                     <Link href={item.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-                      <div className={`p-6 rounded-lg bg-gradient-to-br ${item.gradient} border ${item.border} shadow-lg ${item.shadow} h-full flex flex-col justify-between hover:shadow-2xl transition-all duration-300 cursor-pointer`}>
-                        <div>
+                      <div className={`relative p-6 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] h-full min-h-[340px] flex flex-col justify-between group hover:border-white/20 transition-all duration-500 overflow-hidden cursor-pointer`}>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-30 group-hover:opacity-50 transition-opacity duration-500`} />
+                        <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-600/20 blur-2xl group-hover:blur-3xl transition-all duration-700" />
+                        
+                        <div className="relative z-10">
                           <div className="flex justify-center mb-4">
-                            {item.icon}
+                            <div className="p-3 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
+                              {item.icon}
+                            </div>
                           </div>
-                          <h3 className="text-lg font-semibold text-center text-white mb-3">
+                          <h3 className="text-lg font-semibold text-center text-white mb-3 group-hover:text-pink-300 transition-colors">
                             {item.title}
                           </h3>
-                          <p className="text-sm text-gray-300 text-center mb-4">
+                          <p className="text-sm text-gray-300 text-center leading-relaxed">
                             {item.description}
                           </p>
                         </div>
-                        <div className="text-center">
-                          <p className="text-[#16f2b3] font-semibold">
+                        <div className="relative z-10 text-center mt-4">
+                          <p className="text-[#16f2b3] font-semibold text-sm group-hover:text-[#5cf8d1] transition-colors">
                             {item.stats}
                           </p>
                         </div>
                       </div>
                     </Link>
                   ) : (
-                    <div className={`p-6 rounded-lg bg-gradient-to-br ${item.gradient} border ${item.border} shadow-lg ${item.shadow} h-full flex flex-col justify-between hover:shadow-2xl transition-all duration-300`}>
-                      <div>
+                    <div className={`relative p-6 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] h-full min-h-[340px] flex flex-col justify-between group hover:border-white/20 transition-all duration-500 overflow-hidden`}>
+                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-30 group-hover:opacity-50 transition-opacity duration-500`} />
+                      <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-600/20 blur-2xl group-hover:blur-3xl transition-all duration-700" />
+                      
+                      <div className="relative z-10">
                         <div className="flex justify-center mb-4">
-                          {item.icon}
+                          <div className="p-3 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
+                            {item.icon}
+                          </div>
                         </div>
-                        <h3 className="text-lg font-semibold text-center text-white mb-3">
+                        <h3 className="text-lg font-semibold text-center text-white mb-3 group-hover:text-pink-300 transition-colors">
                           {item.title}
                         </h3>
-                        <p className="text-sm text-gray-300 text-center mb-4">
+                        <p className="text-sm text-gray-300 text-center leading-relaxed">
                           {item.description}
                         </p>
                       </div>
-                      <div className="text-center">
-                        <p className="text-[#16f2b3] font-semibold">
+                      <div className="relative z-10 text-center mt-4">
+                        <p className="text-[#16f2b3] font-semibold text-sm group-hover:text-[#5cf8d1] transition-colors">
                           {item.stats}
                         </p>
                       </div>
@@ -159,6 +172,7 @@ function HobbiesSection() {
                   )}
                 </div>
               </GlowCard>
+              </div>
             ))}
           </div>
         </div>
