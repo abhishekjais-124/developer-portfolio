@@ -15,7 +15,7 @@ const navLinks = [
 
 function Navbar() {
   return (
-    <nav className="sticky top-4 z-[9998]">
+    <nav className="sticky top-0 sm:top-4 z-[9998]">
       <div className="relative overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/5 dark:bg-white/5 backdrop-blur-xl px-4 sm:px-6 py-3 dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]">
         <div className="absolute inset-0 opacity-60 dark:bg-[radial-gradient(circle_at_10%_20%,rgba(22,242,179,0.15),transparent_45%),radial-gradient(circle_at_90%_0%,rgba(106,90,249,0.18),transparent_40%)]" />
         <div className="absolute inset-x-6 top-0 h-px dark:bg-gradient-to-r dark:from-transparent dark:via-white/40 dark:to-transparent" />

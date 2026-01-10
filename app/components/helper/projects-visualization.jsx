@@ -39,15 +39,16 @@ export default function ProjectsVisualization() {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="100%" height={350} className="mx-auto">
         <PieChart>
           <Pie
             data={projectsData}
             cx="50%"
-            cy="50%"
+            cy="40%"
             labelLine={false}
-            label={({ name, value }) => `${name}: ${value}`}
-            outerRadius={100}
+            label={false}
+            outerRadius={70}
+            innerRadius={0}
             fill="#8884d8"
             dataKey="value"
           >
@@ -56,7 +57,7 @@ export default function ProjectsVisualization() {
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
-          <Legend wrapperStyle={{ color: textColor, paddingTop: '20px' }} />
+          <Legend wrapperStyle={{ color: textColor, paddingTop: '10px', fontSize: '12px' }} />
         </PieChart>
       </ResponsiveContainer>
       <div className="text-center mt-4">

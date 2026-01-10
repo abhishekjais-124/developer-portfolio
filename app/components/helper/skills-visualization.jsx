@@ -42,20 +42,22 @@ export default function SkillsVisualization() {
   };
 
   return (
-    <div className="w-full h-full">
-      <ResponsiveContainer width="100%" height={400}>
-        <BarChart data={skillsVisualizationData} margin={{ top: 20, right: 30, left: 0, bottom: 20 }}>
+    <div className="w-full h-full overflow-x-auto">
+      <ResponsiveContainer width="100%" height={420} minWidth={300}>
+        <BarChart data={skillsVisualizationData} margin={{ top: 20, right: 15, left: -5, bottom: 80 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
           <XAxis 
             dataKey="skill" 
-            tick={{ fill: textColor, fontSize: 12 }} 
-            angle={-45}
+            tick={{ fill: textColor, fontSize: 10 }} 
+            angle={-35}
             textAnchor="end"
-            height={100}
+            height={70}
+            interval={0}
           />
           <YAxis 
-            tick={{ fill: textColor, fontSize: 12 }}
+            tick={{ fill: textColor, fontSize: 10 }}
             domain={[0, 100]}
+            width={40}
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ color: textColor }} />

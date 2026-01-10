@@ -42,9 +42,9 @@ export default function ExperienceVisualization() {
   };
 
   return (
-    <div className="w-full h-full">
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart data={experienceData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+    <div className="w-full h-full overflow-x-auto">
+      <ResponsiveContainer width="100%" height={340} minWidth={300}>
+        <AreaChart data={experienceData} margin={{ top: 10, right: 15, left: 5, bottom: 20 }}>
           <defs>
             <linearGradient id="colorProjects" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#6a5af9" stopOpacity={0.8}/>
@@ -58,12 +58,13 @@ export default function ExperienceVisualization() {
           <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
           <XAxis 
             dataKey="year" 
-            tick={{ fill: textColor, fontSize: 12 }}
-            label={{ value: 'Years', position: 'insideBottomRight', offset: -5, fill: textColor }}
+            tick={{ fill: textColor, fontSize: 10 }}
+            label={{ value: 'Years', position: 'insideBottomRight', offset: -5, fill: textColor, fontSize: 10 }}
           />
           <YAxis 
-            tick={{ fill: textColor, fontSize: 12 }}
-            label={{ value: 'Count / Impact %', angle: -90, position: 'insideLeft', fill: textColor }}
+            tick={{ fill: textColor, fontSize: 10 }}
+            width={40}
+            label={{ value: 'Count / Impact %', angle: -90, position: 'insideLeft', fill: textColor, fontSize: 10 }}
           />
           <Tooltip content={<CustomTooltip />} />
           <Area 
