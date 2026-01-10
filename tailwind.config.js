@@ -5,6 +5,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       backgroundImage: {
@@ -23,11 +24,11 @@ module.exports = {
           "3xl": "5rem",
         },
       },
-
-      extend: {
-        screens: {
-          "4k": "1980px",
-        },
+      transitionDuration: {
+        500: '500ms',
+      },
+      screens: {
+        "4k": "1980px",
       },
     },
   },

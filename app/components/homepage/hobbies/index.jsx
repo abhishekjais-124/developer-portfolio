@@ -63,7 +63,14 @@ function HobbiesSection() {
   const VideoModal = ({ videoId, onClose }) => {
     return (
       <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={onClose}>
-        <div className="w-full max-w-4xl aspect-video rounded-lg overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div className="relative w-full max-w-4xl aspect-video rounded-lg overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 z-10 h-9 w-9 rounded-full bg-white text-gray-900 hover:bg-gray-200 flex items-center justify-center shadow-lg transition-all"
+            aria-label="Close video"
+          >
+            ×
+          </button>
           <iframe
             width="100%"
             height="100%"

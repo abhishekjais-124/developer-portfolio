@@ -1,0 +1,10 @@
+# Gzip compression configuration
+# These files are already compressed or benefit less from gzip
+
+*.woff2
+*.woff
+*.ttf
+*.eot
+*.zip
+*.gz
+*.brotli

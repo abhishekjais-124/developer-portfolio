@@ -3,7 +3,9 @@ import AboutSection from "./components/homepage/about";
 import ContactSection from "./components/homepage/contact";
 import Education from "./components/homepage/education";
 import Achievements from "./components/homepage/achievements";
+import Certifications from "./components/homepage/certifications";
 import Recommendations from "./components/homepage/recommendations";
+import VisualizationSection from "./components/homepage/visualizations";
 // import LeetCodeSection from "./components/homepage/leetcode";
 import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
@@ -26,6 +28,8 @@ export default async function Home() {
       <CodingProfiles />
       <HobbiesSection />
       <Achievements />
+      <Certifications />
+      <VisualizationSection />
       <Recommendations />
       <ContactSection />
     </div>

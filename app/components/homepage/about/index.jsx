@@ -3,11 +3,13 @@
 import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import { PiSparkleBold } from "react-icons/pi";
+import ParallaxWrapper from "../../helper/parallax-wrapper";
 
 
 function AboutSection() {
   return (
-    <div id="about" className="my-12 lg:my-16 relative">
+    <ParallaxWrapper offset={0.2}>
+      <div id="about" className="my-12 lg:my-16 relative">
       <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-[#1a1443]/60 via-[#0b142d]/70 to-[#0f1032]/80 blur-3xl opacity-60" />
 
       <div className="relative overflow-hidden rounded-3xl border border-[#262a4f] bg-gradient-to-br from-[#0b1229]/90 via-[#0e1535]/90 to-[#0a1027]/90 p-6 sm:p-8 lg:p-12 shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
@@ -30,10 +32,10 @@ function AboutSection() {
               <PiSparkleBold className="text-[#16f2b3]" size={16} />
               Who I am?
             </div>
-            <h2 className="text-3xl lg:text-4xl font-semibold text-white leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-semibold dark:text-white light:text-gray-900 leading-tight">
               Building calm, confident products with a love for detail.
             </h2>
-            <p className="text-gray-200/90 text-base lg:text-lg leading-relaxed">
+            <p className="dark:text-gray-200/90 light:text-gray-700 text-base lg:text-lg leading-relaxed">
               {personalData.description}
             </p>
             <div className="pt-4 border-t border-[#1f2548]">
@@ -52,7 +54,7 @@ function AboutSection() {
           </div>
 
           <div className="order-1 lg:order-2 w-full flex justify-center">
-            <div className="relative group">
+            <div className="relative group max-w-[320px]">
               <div className="absolute inset-4 rounded-3xl border border-white/5 bg-gradient-to-b from-white/5 via-transparent to-transparent blur-xl" />
               <div className="absolute -inset-2 rounded-[26px] bg-gradient-to-br from-pink-500/20 via-purple-600/10 to-[#16f2b3]/20 opacity-70 group-hover:opacity-100 transition duration-700" />
               <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#0c1026]/80 shadow-[0_25px_60px_rgba(0,0,0,0.45)]">
@@ -60,8 +62,8 @@ function AboutSection() {
                 <div className="absolute -left-6 -bottom-6 h-24 w-24 rounded-full bg-gradient-to-br from-[#16f2b3]/40 to-cyan-400/30 blur-2xl animate-pulse" />
                 <Image
                   src={personalData.profile}
-                  width={360}
-                  height={360}
+                  width={320}
+                  height={320}
                   alt="Abhishek"
                   className="relative z-10 rounded-[18px] grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.02] group-hover:translate-y-1"
                   priority
@@ -71,7 +73,8 @@ function AboutSection() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </ParallaxWrapper>
   );
 }
 

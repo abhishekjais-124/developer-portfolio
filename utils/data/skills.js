@@ -2,17 +2,13 @@ export const skillsData = [
   'Go',
   'Java',
   'Python',
-  'C++',
   'Docker',
-  'React',
   'AWS',
-  'MongoDB',
   'MySQL',
-  'PostgreSQL',
-  'Graphql',
-  'Nginx',
   'Git',
-  'Firebase'
+  'MongoDB',
+  'PostgreSQL',
+  'Nginx'
 ];
 
 

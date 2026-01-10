@@ -9,6 +9,7 @@ import { FiBriefcase, FiMapPin } from "react-icons/fi";
 import experience from '../../../assets/lottie/code.json';
 import AnimationLottie from "../../helper/animation-lottie";
 import GlowCard from "../../helper/glow-card";
+import ParallaxWrapper from "../../helper/parallax-wrapper";
 
 function ImageWithFallback({ src, alt, width, height }) {
   const [imgSrc, setImgSrc] = useState(src || '/png/placeholder.png');
@@ -28,14 +29,15 @@ function Experience() {
   const [expandedId, setExpandedId] = useState(null);
 
   return (
-    <div id="experience" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
-      <Image
-        src="/section.svg"
-        alt="Hero"
-        width={1572}
-        height={795}
-        className="absolute top-0 -z-10"
-      />
+    <ParallaxWrapper offset={0.25}>
+      <div id="experience" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+        <Image
+          src="/section.svg"
+          alt="Hero"
+          width={1572}
+          height={795}
+          className="absolute top-0 -z-10"
+        />
 
       <div className="flex justify-center my-6 lg:py-10">
         <div className="flex flex-col items-center gap-3">
@@ -98,7 +100,7 @@ function Experience() {
                             
                             <div className="flex-1 min-w-0">
                               <div className="flex items-start justify-between gap-3 mb-2">
-                                <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-violet-300 transition-colors">
+                                <h3 className="text-base sm:text-lg font-semibold dark:text-white light:text-gray-900 dark:group-hover:text-violet-300 light:group-hover:text-violet-700 transition-colors">
                                   {experience.title}
                                 </h3>
                                 <span className="flex-shrink-0 px-2.5 py-1 rounded-full bg-[#16f2b3]/10 border border-[#16f2b3]/20 text-[#16f2b3] text-[11px] uppercase tracking-wider font-medium">
@@ -106,7 +108,7 @@ function Experience() {
                                 </span>
                               </div>
                               
-                              <p className="text-sm text-[#9eb3ff] mb-1 flex items-center gap-1.5">
+                              <p className="text-sm dark:text-[#9eb3ff] light:text-violet-700 mb-1 flex items-center gap-1.5">
                                 <FiMapPin size={14} className="text-violet-400" />
                                 {experience.company}
                               </p>
@@ -122,8 +124,8 @@ function Experience() {
                                 <ul className="space-y-1.5 text-sm text-[#cfd6e8]">
                                   {experience.highlights?.slice(0,5).map((h, i) => (
                                     <li key={i} className="flex items-start gap-2">
-                                      <span className="text-violet-400 mt-1.5 flex-shrink-0">•</span>
-                                      <span>{h}</span>
+                                      <span className="text-violet-400 flex-shrink-0 min-w-fit leading-6">•</span>
+                                      <span className="flex-1">{h}</span>
                                     </li>
                                   ))}
                                 </ul>
@@ -184,8 +186,8 @@ function Experience() {
                               <ul className="space-y-1.5 text-sm text-[#cfd6e8]">
                                 {experience.highlights?.slice(0,5).map((h, i) => (
                                   <li key={i} className="flex items-start gap-2">
-                                    <span className="text-violet-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>{h}</span>
+                                    <span className="text-violet-400 flex-shrink-0 min-w-fit leading-6">•</span>
+                                    <span className="flex-1">{h}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -201,7 +203,8 @@ function Experience() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </ParallaxWrapper>
   );
 }
 

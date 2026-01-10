@@ -7,9 +7,21 @@
   --grid: rgba(255, 255, 255, 0.04);
 }
 
+html.light {
+  --foreground-rgb: 30, 30, 30;
+  --bg-primary: #ffffff;
+  --card: #f5f5f5;
+  --grid: rgba(0, 0, 0, 0.04);
+}
+
+html {
+  transition: background-color 500ms ease, color 500ms ease;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background-color: var(--bg-primary);
+  transition: background-color 500ms ease, color 500ms ease;
   background-image:
     radial-gradient(120% 120% at 12% 10%, rgba(82, 113, 255, 0.16), transparent 45%),
     radial-gradient(100% 100% at 82% 0%, rgba(22, 242, 179, 0.18), transparent 40%),
@@ -40,12 +52,36 @@ h3,
 h4 {
   font-family: var(--font-display), "Inter", "Helvetica Neue", Arial, sans-serif;
   letter-spacing: -0.02em;
+  transition: color 500ms ease;
 }
 
 p,
 li,
 span {
   color: rgb(var(--foreground-rgb));
+  transition: color 500ms ease;
+}
+
+/* GPU Acceleration for animations */
+body {
+  will-change: background-color;
+}
+
+button, a, [role="button"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+html.light {
+  p, li, span {
+    color: #1f1f1f;
+  }
+  
+  h1, h2, h3, h4 {
+    color: #0a0a0a;
+  }
 }
 
 /* Neon-inspired scrollbar */
@@ -95,4 +131,213 @@ span {
 .sticky-card {
   // padding-top: calc(var(--index) * 2.5rem);
   top: calc(var(--index) * 4rem);
+}
+
+/* Typing and Erasing Animation */
+.perspective {
+  perspective: none;
+}
+
+.text-3d {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 7s steps(16, end) infinite;
+}
+
+.text-3d::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #16f2b3;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes blink {
+  0%, 49%, 50%, 100% {
+    background-color: #16f2b3;
+  }
+  50%, 99% {
+    background-color: transparent;
+  }
+}
+/* Shimmer loading animation for images */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Reduce animations for users with accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Performance: GPU acceleration for interactive elements */
+button,
+a,
+input,
+.interactive {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Optimize scrolling performance */
+body {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  scroll-padding-top: 4rem;
+}
+
+/* Lazy loading image placeholder */
+img[loading="lazy"] {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Contain layout shifts from images */
+img {
+  aspect-ratio: auto;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Performance: Font display swapping */
+@font-face {
+  font-display: swap; /* Show fallback font immediately */
+}
+
+/* Critical rendering path optimizations */
+.hero-section,
+.about-section,
+.skills-section {
+  contain: layout style paint;
+}
+
+/* Content visibility for off-screen elements */
+.section {
+  content-visibility: auto;
+}
+
+/* Animated gradient border utilities */
+@keyframes borderGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Thick animated border for cards/containers */
+.animated-border {
+  position: relative;
+  z-index: 0;
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #16f2b3, #6a5af9, #f472b6, #16f2b3);
+  background-size: 300% 100%;
+  animation: borderGradientShift 8s ease infinite;
+  z-index: -1;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Slim animated border for small buttons/tabs */
+.animated-border-sm {
+  position: relative;
+  z-index: 0;
+}
+
+.animated-border-sm::before {
+  content: "";
+  position: absolute;
+  inset: -0.5px;
+  padding: 0.5px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #16f2b3, #6a5af9, #f472b6, #16f2b3);
+  background-size: 300% 100%;
+  animation: borderGradientShift 8s ease infinite;
+  z-index: -1;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Hover glow helper (optional) */
+.hover-glow {
+  transition: box-shadow 400ms ease, transform 400ms ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 12px 60px rgba(139, 92, 246, 0.25), 0 8px 30px rgba(22, 242, 179, 0.18);
 }

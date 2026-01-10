@@ -1,8 +1,9 @@
 // @flow strict
 import { educations } from "@/utils/data/educations";
 import Image from "next/image";
+import Link from "next/link";
 import { BsPersonWorkspace } from "react-icons/bs";
-import { FiBookOpen, FiAward } from "react-icons/fi";
+import { FiBookOpen, FiAward, FiMapPin } from "react-icons/fi";
 import lottieFile from '../../../assets/lottie/study.json';
 import AnimationLottie from "../../helper/animation-lottie";
 import GlowCard from "../../helper/glow-card";
@@ -67,12 +68,25 @@ function Education() {
                             <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-violet-300 transition-colors">
                               {education.title}
                             </h3>
-                            <span className="flex-shrink-0 px-2.5 py-1 rounded-full bg-[#16f2b3]/10 border border-[#16f2b3]/20 text-[#16f2b3] text-[11px] uppercase tracking-wider font-medium">
-                              {education.duration}
-                            </span>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <span className="px-2.5 py-1 rounded-full bg-[#16f2b3]/10 border border-[#16f2b3]/20 text-[#16f2b3] text-[11px] uppercase tracking-wider font-medium">
+                                {education.duration}
+                              </span>
+                              {education.location && (
+                                <Link 
+                                  href={education.location}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center justify-center h-8 w-8 rounded-full bg-[#16f2b3]/10 border border-[#16f2b3]/30 text-[#16f2b3] hover:bg-[#16f2b3]/20 hover:border-[#16f2b3]/50 transition-all duration-200"
+                                  title="View location"
+                                >
+                                  <FiMapPin size={16} />
+                                </Link>
+                              )}
+                            </div>
                           </div>
                           
-                          <p className="text-sm text-[#9eb3ff] mb-2">
+                          <p className="text-sm text-[#9eb3ff] mb-3">
                             {education.institution}
                           </p>
                           
