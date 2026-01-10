@@ -22,13 +22,6 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: var(--bg-primary);
   transition: background-color 500ms ease, color 500ms ease;
-  background-image:
-    radial-gradient(120% 120% at 12% 10%, rgba(82, 113, 255, 0.16), transparent 45%),
-    radial-gradient(100% 100% at 82% 0%, rgba(22, 242, 179, 0.18), transparent 40%),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-    linear-gradient(0deg, var(--grid) 1px, transparent 1px);
-  background-size: auto, auto, 120px 120px, 120px 120px;
-  background-attachment: scroll;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   font-smooth: always;
