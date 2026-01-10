@@ -1,13 +1,12 @@
 import { projectsData } from '@/utils/data/projects-data';
 import ProjectCard from './project-card';
 import { FiLayers } from 'react-icons/fi';
-import ParallaxWrapper from '../../helper/parallax-wrapper';
+
 
 const Projects = () => {
 
   return (
-    <ParallaxWrapper offset={0.35}>
-      <div id='projects' className="relative z-50 my-12 lg:my-24">
+    <div id='projects' className="relative z-50 my-12 lg:my-24">
         <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-violet-500/10 via-transparent to-[#16f2b3]/10 blur-3xl opacity-40" />
       
       <div className="flex justify-center my-6 lg:py-10">
@@ -41,8 +40,7 @@ const Projects = () => {
           ))}
         </div>
       </div>
-      </div>
-    </ParallaxWrapper>
+    </div>
   );
 };
 

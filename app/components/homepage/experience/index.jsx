@@ -9,7 +9,7 @@ import { FiBriefcase, FiMapPin } from "react-icons/fi";
 import experience from '../../../assets/lottie/code.json';
 import AnimationLottie from "../../helper/animation-lottie";
 import GlowCard from "../../helper/glow-card";
-import ParallaxWrapper from "../../helper/parallax-wrapper";
+
 
 function ImageWithFallback({ src, alt, width, height }) {
   const [imgSrc, setImgSrc] = useState(src || '/png/placeholder.png');
@@ -29,7 +29,6 @@ function Experience() {
   const [expandedId, setExpandedId] = useState(null);
 
   return (
-    <ParallaxWrapper offset={0.25}>
       <div id="experience" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
         <Image
           src="/section.svg"
@@ -204,7 +203,6 @@ function Experience() {
         </div>
       </div>
       </div>
-    </ParallaxWrapper>
   );
 }
 

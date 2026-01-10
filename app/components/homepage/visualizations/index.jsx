@@ -4,7 +4,7 @@
 import { useState, useEffect, Suspense, lazy } from "react";
 import { FiBarChart2 } from "react-icons/fi";
 import GlowCard from "../../helper/glow-card";
-import ParallaxWrapper from "../../helper/parallax-wrapper";
+
 
 // Lazy load visualizations for better initial load
 const SkillsVisualization = lazy(() => import("../../helper/skills-visualization"));
@@ -34,19 +34,16 @@ function VisualizationSection() {
 
   if (!mounted) {
     return (
-      <ParallaxWrapper offset={0.25}>
-        <div id="visualizations" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
-          <div className="mx-4 lg:mx-0">
-            <div className="w-full h-96 rounded-3xl border border-white/10 bg-white/5 animate-pulse" />
-          </div>
+      <div id="visualizations" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+        <div className="mx-4 lg:mx-0">
+          <div className="w-full h-96 rounded-3xl border border-white/10 bg-white/5 animate-pulse" />
         </div>
-      </ParallaxWrapper>
+      </div>
     );
   }
 
   return (
-    <ParallaxWrapper offset={0.25}>
-      <div id="visualizations" suppressHydrationWarning className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+    <div id="visualizations" suppressHydrationWarning className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
         <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
 
         <div className="flex justify-center -translate-y-[1px]">
@@ -186,7 +183,6 @@ function VisualizationSection() {
           </GlowCard>
         </div>
       </div>
-    </ParallaxWrapper>
   );
 }
 
