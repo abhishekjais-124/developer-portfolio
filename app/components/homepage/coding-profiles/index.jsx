@@ -20,13 +20,6 @@ const iconMap = {
 function CodingProfiles() {
   return (
     <div id="coding-profiles" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
-      <Image
-        src="/section.svg"
-        alt="Section background"
-        width={1572}
-        height={795}
-        className="absolute top-0 -z-10"
-      />
 
       <div className="flex justify-center my-6 lg:py-10">
         <div className="flex flex-col items-center gap-3">
