@@ -22,13 +22,28 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: var(--bg-primary);
   transition: background-color 500ms ease, color 500ms ease;
+  background-image:
+    radial-gradient(120% 120% at 12% 10%, rgba(82, 113, 255, 0.16), transparent 45%),
+    radial-gradient(100% 100% at 82% 0%, rgba(22, 242, 179, 0.18), transparent 40%),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(0deg, var(--grid) 1px, transparent 1px);
+  background-size: auto, auto, 120px 120px, 120px 120px;
+  background-attachment: fixed;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   font-smooth: always;
 }
 
 body::after {
-  display: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 20%, rgba(244, 114, 182, 0.12), transparent 32%),
+    radial-gradient(circle at 80% 70%, rgba(22, 242, 179, 0.12), transparent 28%);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  z-index: -10;
 }
 
 h1,
@@ -47,9 +62,16 @@ span {
   transition: color 500ms ease;
 }
 
-/* Smooth transitions */
+/* GPU Acceleration for animations */
+body {
+  will-change: background-color;
+}
+
 button, a, [role="button"] {
-  transition: transform 200ms ease, opacity 200ms ease;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 html.light {
