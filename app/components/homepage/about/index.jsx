@@ -31,10 +31,10 @@ function AboutSection() {
               <PiSparkleBold className="text-[#16f2b3]" size={16} />
               Who I am?
             </div>
-            <h2 className="text-3xl lg:text-4xl font-semibold dark:text-white light:text-gray-900 leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-semibold dark:text-white leading-tight">
               Building calm, confident products with a love for detail.
             </h2>
-            <p className="dark:text-gray-200/90 light:text-gray-700 text-base lg:text-lg leading-relaxed">
+            <p className="dark:text-gray-200/90 text-base lg:text-lg leading-relaxed">
               {personalData.description}
             </p>
             <div className="pt-4 border-t border-[#1f2548]">

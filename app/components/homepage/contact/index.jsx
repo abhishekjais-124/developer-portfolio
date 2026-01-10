@@ -38,38 +38,38 @@ function ContactSection() {
             <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_20%_20%,rgba(22,242,179,0.18),transparent_35%),radial-gradient(circle_at_80%_30%,rgba(106,90,249,0.22),transparent_34%)]" />
             <div className="relative flex flex-col gap-6">
               <div>
-                <p className="text-sm uppercase tracking-[0.18em] dark:text-white/70 light:text-gray-700">Direct lines</p>
-              <h3 className="text-2xl font-semibold dark:text-white light:text-gray-900 mt-2">Reach out anytime</h3>
+                <p className="text-sm uppercase tracking-[0.18em] dark:text-white/70">Direct lines</p>
+              <h3 className="text-2xl font-semibold dark:text-white mt-2">Reach out anytime</h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-[#16f2b3]/30 to-[#6a5af9]/30 border border-white/10 flex items-center justify-center dark:text-white light:text-gray-900">
+                <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-[#16f2b3]/30 to-[#6a5af9]/30 border border-white/10 flex items-center justify-center dark:text-white">
                   <MdAlternateEmail size={22} />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.14em] dark:text-white/60 light:text-gray-600">Email</p>
-                  <p className="text-sm font-semibold dark:text-white light:text-gray-900 break-all">{personalData.email}</p>
+                  <p className="text-xs uppercase tracking-[0.14em] dark:text-white/60">Email</p>
+                  <p className="text-sm font-semibold dark:text-white break-all">{personalData.email}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-[#f472b6]/30 to-[#6a5af9]/30 border border-white/10 flex items-center justify-center dark:text-white light:text-gray-900">
+                <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-[#f472b6]/30 to-[#6a5af9]/30 border border-white/10 flex items-center justify-center dark:text-white">
                   <IoMdCall size={22} />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.14em] dark:text-white/60 light:text-gray-600">Phone</p>
-                  <p className="text-sm font-semibold dark:text-white light:text-gray-900">{personalData.phone}</p>
+                  <p className="text-xs uppercase tracking-[0.14em] dark:text-white/60">Phone</p>
+                  <p className="text-sm font-semibold dark:text-white">{personalData.phone}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 sm:col-span-2">
-                <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-[#16f2b3]/30 to-[#f472b6]/30 border border-white/10 flex items-center justify-center dark:text-white light:text-gray-900">
+                <div className="h-11 w-11 rounded-lg bg-gradient-to-br from-[#16f2b3]/30 to-[#f472b6]/30 border border-white/10 flex items-center justify-center dark:text-white">
                   <CiLocationOn size={22} />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.14em] dark:text-white/60 light:text-gray-600">Location</p>
-                  <p className="text-sm font-semibold dark:text-white light:text-gray-900">{personalData.address}</p>
+                  <p className="text-xs uppercase tracking-[0.14em] dark:text-white/60">Location</p>
+                  <p className="text-sm font-semibold dark:text-white">{personalData.address}</p>
                 </div>
               </div>
             </div>

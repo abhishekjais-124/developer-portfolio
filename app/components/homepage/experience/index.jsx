@@ -92,7 +92,7 @@ function Experience() {
                             
                             <div className="flex-1 min-w-0">
                               <div className="flex items-start justify-between gap-3 mb-2">
-                                <h3 className="text-base sm:text-lg font-semibold dark:text-white light:text-gray-900 dark:group-hover:text-violet-300 light:group-hover:text-violet-700 transition-colors">
+                                <h3 className="text-base sm:text-lg font-semibold dark:text-white dark:group-hover:text-violet-300 transition-colors">
                                   {experience.title}
                                 </h3>
                                 <span className="flex-shrink-0 px-2.5 py-1 rounded-full bg-[#16f2b3]/10 border border-[#16f2b3]/20 text-[#16f2b3] text-[11px] uppercase tracking-wider font-medium">
@@ -100,7 +100,7 @@ function Experience() {
                                 </span>
                               </div>
                               
-                              <p className="text-sm dark:text-[#9eb3ff] light:text-violet-700 mb-1 flex items-center gap-1.5">
+                              <p className="text-sm dark:text-[#9eb3ff] mb-1 flex items-center gap-1.5">
                                 <FiMapPin size={14} className="text-violet-400" />
                                 {experience.company}
                               </p>

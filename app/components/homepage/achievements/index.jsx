@@ -43,15 +43,15 @@ function Achievements() {
                   </div>
                   <div className="flex flex-col">
                     <p className="text-xs uppercase tracking-[0.14em] text-[#16f2b3]">Milestone</p>
-                    <p className="text-lg font-semibold dark:text-white light:text-gray-900 dark:group-hover:text-pink-200 light:group-hover:text-pink-700 transition-colors">{item.title}</p>
+                    <p className="text-lg font-semibold dark:text-white dark:group-hover:text-pink-200 transition-colors">{item.title}</p>
                   </div>
                 </div>
 
-                <p className="relative z-10 text-sm dark:text-[#cfd6e8] light:text-gray-700 leading-relaxed flex-1">
+                <p className="relative z-10 text-sm dark:text-[#cfd6e8] leading-relaxed flex-1">
                   {item.description}
                 </p>
 
-                <div className="relative z-10 flex items-center gap-2 text-xs dark:text-[#e2e8ff] light:text-gray-800 uppercase tracking-[0.16em] mt-auto pt-2 border-t border-white/5">
+                <div className="relative z-10 flex items-center gap-2 text-xs dark:text-[#e2e8ff] uppercase tracking-[0.16em] mt-auto pt-2 border-t border-white/5">
                   <FiStar size={14} className="text-amber-300" />
                    <span>{item.tag || "Recognized Achievement"}</span>
                 </div>

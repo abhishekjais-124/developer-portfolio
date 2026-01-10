@@ -9,16 +9,8 @@ export const ThemeProvider = ({ children }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Check localStorage first
-    const savedTheme = localStorage.getItem("theme");
-    
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    }
+    // Enforce dark theme only
+    setTheme("dark");
     setIsLoaded(true);
   }, []);
 
@@ -26,20 +18,16 @@ export const ThemeProvider = ({ children }) => {
     if (!isLoaded) return;
 
     const html = document.documentElement;
-    
-    if (theme === "light") {
-      html.classList.add("light");
-      html.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      html.classList.remove("light");
-      html.classList.add("dark");
+    html.classList.remove("light");
+    html.classList.add("dark");
+    try {
       localStorage.setItem("theme", "dark");
-    }
-  }, [theme, isLoaded]);
+    } catch {}
+  }, [isLoaded]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === "dark" ? "light" : "dark");
+    // No-op: light theme removed
+    setTheme("dark");
   };
 
   return (

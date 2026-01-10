@@ -108,9 +108,11 @@ function CodingProfiles() {
                 >
                   View Profile
                 </Link>
-                <span className="flex items-center gap-2 text-[#8fa2ff] text-xs uppercase tracking-[0.2em]">
-                  <Image src="/image/guardian.png" alt="Guardian badge" width={28} height={28} className="h-7 w-7 rounded-full" />
-                  Guardian Badge
+                <span className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 via-cyan-600/15 to-blue-600/20 border border-blue-400/30 text-white text-xs font-semibold uppercase tracking-[0.15em] shadow-[0_4px_12px_rgba(59,130,246,0.2)]">
+                  <div className="relative flex items-center justify-center h-8 w-8 rounded-lg bg-gradient-to-br from-blue-400/20 to-cyan-400/20 border border-blue-400/40 p-1.5">
+                    <Image src="/image/guardian.png" alt="Guardian badge" width={32} height={32} className="h-full w-full object-contain drop-shadow-[0_2px_8px_rgba(96,165,250,0.6)]" />
+                  </div>
+                  <span className="bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">Guardian</span>
                 </span>
               </div>
             </div>

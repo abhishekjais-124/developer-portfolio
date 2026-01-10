@@ -3,7 +3,7 @@
 import { isValidEmail } from "@/utils/check-email";
 import { send } from '@emailjs/browser';
 import { useState } from "react";
-import { TbMailForward, TbCheck } from "react-icons/tb";
+import { FiSend, FiCheckCircle } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 function SuccessModal({ isOpen, onClose }) {
@@ -28,7 +28,7 @@ function SuccessModal({ isOpen, onClose }) {
               
               {/* Inner circle with checkmark */}
               <div className="absolute inset-2 bg-[#0d1224] rounded-full flex items-center justify-center border-2 border-[#16f2b3] animate-pulse">
-                <TbCheck className="text-[#16f2b3] text-5xl animate-scale-in" strokeWidth={1.5} />
+                <FiCheckCircle className="text-[#16f2b3] text-5xl animate-scale-in" strokeWidth={1.5} />
               </div>
             </div>
           </div>
@@ -264,7 +264,7 @@ function ContactForm() {
                   ) : (
                     <>
                       Send Message
-                      <TbMailForward size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+                      <FiSend size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
                     </>
                   )}
                 </span>

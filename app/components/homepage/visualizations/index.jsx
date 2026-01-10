@@ -14,7 +14,7 @@ const ProjectsVisualization = lazy(() => import("../../helper/projects-visualiza
 // Loading skeleton
 function ChartSkeleton() {
   return (
-    <div className="w-full h-96 dark:bg-white/5 light:bg-black/5 rounded-lg animate-pulse" />
+    <div className="w-full h-96 dark:bg-white/5 rounded-lg animate-pulse" />
   );
 }
 

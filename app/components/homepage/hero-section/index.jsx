@@ -55,7 +55,7 @@ function HeroSection() {
           </div>
 
           <div className="space-y-4">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] dark:text-white light:text-gray-900">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] dark:text-white">
               Building reliable systems with a calm, product-first mindset.
               <span className="block text-[#16f2b3] mt-2">
                 <div className="perspective">
@@ -217,6 +217,12 @@ function HeroSection() {
               </div>
               <div><span className="ml-8 lg:ml-16 mr-2 text-gray-400">{`);`}</span></div>
               <div><span className="ml-4 lg:ml-8 text-gray-400">{`};`}</span></div>
+              <div><span className="text-gray-400">{`};`}</span></div>
+            </code>
+          </div>
+          </div>
+        )}
+      </div>
 
       {/* Resume Modal */}
       {isResumeModalOpen && (
@@ -252,12 +258,6 @@ function HeroSection() {
           </div>
         </div>
       )}
-              <div><span className="text-gray-400">{`};`}</span></div>
-            </code>
-          </div>
-          </div>
-        )}
-      </div>
     </section>
   );
 };
