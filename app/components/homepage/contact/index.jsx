@@ -1,7 +1,7 @@
 // @flow strict
 import { personalData } from '@/utils/data/personal-data';
 import Link from 'next/link';
-import { BiLogoLinkedin } from "react-icons/bi";
+import { FiLinkedin } from "react-icons/fi";
 import { CiLocationOn } from "react-icons/ci";
 import { FaInstagram } from 'react-icons/fa';
 import { IoLogoGithub, IoMdCall } from "react-icons/io";
@@ -83,7 +83,7 @@ function ContactSection() {
 
               {personalData.linkedIn && (
                 <Link target="_blank" href={personalData.linkedIn} aria-label="LinkedIn" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 hover:text-white hover:border-white/30 transition-all duration-200">
-                  <BiLogoLinkedin size={22} />
+                  <FiLinkedin size={22} />
                 </Link>
               )}
 

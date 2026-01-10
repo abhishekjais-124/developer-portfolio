@@ -4,7 +4,7 @@
 import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import GlowCard from "../../helper/glow-card";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { SiLeetcode } from "react-icons/si";
 import { FiTrendingUp } from "react-icons/fi";
 
@@ -15,7 +15,7 @@ function Highlights() {
       title: "LinkedIn Followers",
       value: personalData.linkedinFollowers,
       description: "Professional network & influence",
-      icon: <BsLinkedin size={32} className="text-pink-500" />,
+      icon: <FiLinkedin size={32} className="text-pink-500" />,
       gradient: "from-pink-500/20 to-[#16f2b3]/20",
       border: "border-pink-500/50",
       shadow: "shadow-pink-500/20"
@@ -25,7 +25,7 @@ function Highlights() {
       title: "GitHub Repositories",
       value: personalData.githubRepositories,
       description: "Open source & project portfolio",
-      icon: <BsGithub size={32} className="text-cyan-400" />,
+      icon: <FiGithub size={32} className="text-cyan-400" />,
       gradient: "from-cyan-500/20 to-pink-500/20",
       border: "border-cyan-500/50",
       shadow: "shadow-cyan-500/20"

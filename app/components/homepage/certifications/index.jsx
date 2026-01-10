@@ -2,12 +2,10 @@
 "use client";
 
 import certificationsData from "@/utils/data/certifications";
-import { useState } from "react";
-import { FiAward, FiX } from "react-icons/fi";
+import { FiAward } from "react-icons/fi";
 import GlowCard from "../../helper/glow-card";
 
 function Certifications() {
-  const [expandedId, setExpandedId] = useState(null);
 
   return (
     <div id="certifications" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
@@ -34,7 +32,7 @@ function Certifications() {
             <GlowCard key={cert.id} identifier={`cert-${cert.id}`} className="h-full">
               <div
                 className="relative p-4 sm:p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-[#0d1228]/85 via-[#0b1024]/85 to-[#0a0d1e]/85 backdrop-blur-xl shadow-[0_16px_60px_rgba(0,0,0,0.35)] overflow-hidden group cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_80px_rgba(0,0,0,0.45)] h-full flex flex-col"
-                onClick={() => setExpandedId(expandedId === cert.id ? null : cert.id)}
+                onClick={() => window.open(cert.link, '_blank', 'noopener,noreferrer')}
               >
                 <div className="absolute inset-0 opacity-45 bg-[radial-gradient(circle_at_20%_20%,rgba(251,191,36,0.14),transparent_38%),radial-gradient(circle_at_78%_18%,rgba(106,90,249,0.2),transparent_36%)]" />
                 <div className="absolute inset-0 border border-white/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -61,58 +59,17 @@ function Certifications() {
                 <div className="relative mt-5 sm:mt-6 flex items-center justify-between text-xs sm:text-sm text-white/70">
                   <span className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-amber-300 animate-pulse" />
-                    Tap to preview
+                    Click to view
                   </span>
                   <span className="rounded-full px-3 py-1 bg-white/10 border border-white/15 text-[10px] sm:text-xs uppercase tracking-[0.08em]">
-                    Expand
+                    Open
                   </span>
                 </div>
-
-                {expandedId === cert.id && (
-                  <div className="relative mt-5 pt-4 border-t border-white/10 mt-auto">
-                    <button
-                      onClick={() => setExpandedId(null)}
-                      className="w-full p-3 rounded-lg bg-gradient-to-r from-amber-500/15 to-orange-500/15 border border-amber-500/30 text-amber-100 font-semibold hover:from-amber-500/25 hover:to-orange-500/25 transition-all"
-                    >
-                      Click to View Certificate
-                    </button>
-                  </div>
-                )}
               </div>
             </GlowCard>
           ))}
         </div>
       </div>
-
-      {/* Full Screen Modal */}
-      {expandedId !== null && (
-        <div 
-          className="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setExpandedId(null)}
-        >
-          <div 
-            className="relative w-full h-full max-w-7xl max-h-[90vh] rounded-xl overflow-hidden border border-white/10 bg-white backdrop-blur-xl shadow-2xl flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <div className="absolute top-4 sm:top-32 right-4 z-[10000]">
-              <button
-                onClick={() => setExpandedId(null)}
-                className="h-8 w-8 rounded-lg bg-red-500 hover:bg-red-600 flex items-center justify-center text-white transition-all shadow-lg"
-              >
-                <FiX size={18} />
-              </button>
-            </div>
-
-            {/* iframe Container */}
-            <iframe
-              src={certificationsData.find(c => c.id === expandedId)?.link}
-              className="w-full h-full border-none"
-              title="Certificate Preview"
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

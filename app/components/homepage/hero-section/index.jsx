@@ -5,7 +5,7 @@ import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { FaInstagram } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
@@ -94,8 +94,8 @@ function HeroSection() {
             {[personalData.github, personalData.linkedIn, personalData.leetcode, personalData.instagram].map((link, idx) => {
               if (!link) return null;
               const icons = [
-                <BsGithub key="g" size={22} />,
-                <BsLinkedin key="l" size={22} />,
+                <FiGithub key="g" size={22} />,
+                <FiLinkedin key="l" size={22} />,
                 <SiLeetcode key="lc" size={20} />, 
                 <FaInstagram key="i" size={22} />,
               ];

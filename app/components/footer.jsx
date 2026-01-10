@@ -1,7 +1,7 @@
 // @flow strict
 import Link from 'next/link';
 import { personalData } from '@/utils/data/personal-data';
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
+import { FiGithub, FiLinkedin } from 'react-icons/fi';
 import { FaInstagram } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 
@@ -14,12 +14,12 @@ function Footer() {
           <div className="flex items-center gap-3">
             {personalData.github && (
               <Link target="_blank" href={personalData.github} aria-label="GitHub" className="flex h-10 w-10 items-center justify-center rounded-full dark:border-white/10 border dark:bg-white/5 dark:text-white/70 dark:hover:text-white dark:hover:border-white/30 transition-all duration-200">
-                <BsGithub size={18} />
+                <FiGithub size={18} />
               </Link>
             )}
             {personalData.linkedIn && (
               <Link target="_blank" href={personalData.linkedIn} aria-label="LinkedIn" className="flex h-10 w-10 items-center justify-center rounded-full dark:border-white/10 border dark:bg-white/5 dark:text-white/70 dark:hover:text-white dark:hover:border-white/30 transition-all duration-200">
-                <BsLinkedin size={18} />
+                <FiLinkedin size={18} />
               </Link>
             )}
             {personalData.leetcode && (

@@ -5,7 +5,6 @@ import Footer from "./components/footer";
 import ScrollToTop from "./components/helper/scroll-to-top";
 import Navbar from "./components/navbar";
 import { ThemeProvider } from "./context/ThemeContext";
-import ServiceWorkerRegister from "./components/helper/service-worker-register";
 import "./css/card.scss";
 import "./css/globals.scss";
 const inter = Inter({ subsets: ["latin"] });
@@ -34,7 +33,6 @@ export default function RootLayout({ children }) {
             <div className="absolute inset-0 dark:bg-[radial-gradient(circle_at_20%_80%,rgba(244,114,182,0.14),transparent_35%),radial-gradient(circle_at_90%_60%,rgba(22,242,179,0.12),transparent_32%)] opacity-60" />
           </div>
           <ToastContainer />
-          <ServiceWorkerRegister />
           <main className="min-h-screen relative mx-auto px-6 sm:px-10 lg:max-w-[72rem] xl:max-w-[78rem] 2xl:max-w-[94rem] dark:text-white pb-12">
             <Navbar />
             {children}

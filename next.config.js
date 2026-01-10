@@ -25,6 +25,7 @@ module.exports = {
   // Optimize package imports
   experimental: {
     esmExternals: true,
-    optimizePackageImports: ['recharts', 'react-icons'],
+    // Disabling react-icons optimization to avoid HMR/WebSocket issues in dev
+    optimizePackageImports: ['recharts'],
   },
 };
