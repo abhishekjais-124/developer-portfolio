@@ -69,7 +69,7 @@ function VisualizationSection() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-3 my-8 px-4">
+        <div className="flex overflow-x-auto sm:flex-wrap justify-center gap-3 my-8 px-4 sm:px-0">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -136,7 +136,7 @@ function VisualizationSection() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-12 px-4 lg:px-0">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-12 px-4 lg:px-0">
           <GlowCard identifier="analytics-1" className="w-full">
             <div className="relative p-6 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm h-full overflow-hidden text-center">
               <div className="relative z-10">

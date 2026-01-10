@@ -1,4 +1,3 @@
-import { GoogleTagManager } from "@next/third-parties/google";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,7 +25,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <body className={`${inter.className} ${display.variable} bg-[#050915] dark:bg-[#050915] light:bg-white antialiased transition-colors duration-500`}>
         <ThemeProvider>
           <div className="pointer-events-none fixed inset-0 -z-20">
@@ -44,7 +43,6 @@ export default function RootLayout({ children }) {
           <Footer />
         </ThemeProvider>
       </body>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
     </html>
   );
 }

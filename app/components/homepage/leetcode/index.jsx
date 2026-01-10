@@ -31,23 +31,21 @@ function LeetCodeSection() {
           </div>
         </div>
         
-        <div className="flex items-center justify-between gap-3 flex-wrap mb-8 bg-gradient-to-r from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-4 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
-          <div className="flex items-center gap-3">
-            <Link
-              href={`https://leetcode.com/u/${p.handle}/`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-full bg-gradient-to-r from-[#7c5dff] to-[#19e6ff] text-white text-sm font-semibold shadow-[0_8px_24px_rgba(25,230,255,0.3)] hover:shadow-[0_8px_32px_rgba(25,230,255,0.45)] transition-all duration-300 flex items-center gap-2"
-            >
-              <span>View Profile</span>
-              <FiExternalLink size={14} />
-            </Link>
-          </div>
-          <div className="flex items-center gap-3 px-3 py-2 rounded-full bg-gradient-to-r from-amber-500/10 to-yellow-500/10 border border-amber-500/20">
-            <Image src="/image/guardian.png" alt="Guardian badge" width={28} height={28} className="h-7 w-7 rounded-full" />
+        <div className="flex items-center justify-center sm:justify-between gap-4 flex-wrap mb-8 bg-gradient-to-r from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+          <Link
+            href={`https://leetcode.com/u/${p.handle}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7c5dff] to-[#19e6ff] text-white text-sm font-semibold shadow-[0_8px_24px_rgba(25,230,255,0.3)] hover:shadow-[0_8px_32px_rgba(25,230,255,0.45)] transition-all duration-300 flex items-center gap-2"
+          >
+            <span>View Profile</span>
+            <FiExternalLink size={14} />
+          </Link>
+          <div className="flex items-center gap-3 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-500/10 to-yellow-500/10 border border-amber-500/20">
+            <Image src="/image/guardian.png" alt="Guardian badge" width={32} height={32} className="h-8 w-8 rounded-full" />
             <div className="flex items-center gap-2 text-amber-300">
               <FiAward size={16} />
-              <span className="text-xs font-semibold uppercase tracking-wider">Guardian</span>
+              <span className="text-sm font-semibold uppercase tracking-wider">Guardian Badge</span>
             </div>
           </div>
         </div>

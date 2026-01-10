@@ -8,7 +8,7 @@ import GlowCard from "../../helper/glow-card";
 
 function Achievements() {
   return (
-    <div id="achievements" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
+    <div id="achievements" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]" suppressHydrationWarning>
 
       <div className="flex justify-center my-6 lg:py-10">
         <div className="flex flex-col items-center gap-3">
@@ -31,7 +31,7 @@ function Achievements() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-7 max-w-7xl mx-auto px-4">
           {achievements.map((item) => (
             <GlowCard key={item.id} identifier={`achievement-${item.id}`} className="h-full">
-              <div className="relative p-6 sm:p-7 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] h-full flex flex-col gap-4 group overflow-hidden min-h-[420px]">
+              <div className="relative p-6 sm:p-7 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] h-full flex flex-col gap-2 sm:gap-4 group overflow-hidden sm:min-h-[420px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-amber-300/10 to-cyan-400/10 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
                 <div className="absolute -top-16 -right-16 h-32 w-32 rounded-full bg-pink-500/20 blur-3xl group-hover:bg-pink-500/30 transition-all duration-700" />
                 <div className="absolute -bottom-12 -left-12 h-28 w-28 rounded-full bg-cyan-400/20 blur-3xl group-hover:bg-cyan-400/30 transition-all duration-700" />

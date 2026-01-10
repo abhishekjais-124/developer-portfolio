@@ -8,7 +8,7 @@ import { PiSparkleBold } from "react-icons/pi";
 
 function AboutSection() {
   return (
-    <div id="about" className="my-12 lg:my-16 relative">
+    <div id="about" className="my-12 lg:my-16 relative" suppressHydrationWarning>
       <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-[#1a1443]/60 via-[#0b142d]/70 to-[#0f1032]/80 blur-3xl opacity-60" />
 
       <div className="relative overflow-hidden rounded-3xl border border-[#262a4f] bg-gradient-to-br from-[#0b1229]/90 via-[#0e1535]/90 to-[#0a1027]/90 p-6 sm:p-8 lg:p-12 shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
