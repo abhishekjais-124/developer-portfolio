@@ -19,20 +19,20 @@ export default function ExperienceVisualization() {
   const { theme } = useTheme();
   
   const isDark = theme === 'dark';
-  const textColor = isDark ? '#ffffff' : '#1f1f1f';
+  const textColor = isDark ? '#f3eee4' : '#1f1f1f';
   const gridColor = isDark ? '#ffffff20' : '#00000020';
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className={`${isDark ? 'bg-[#0a0d1e]' : 'bg-white'} p-3 rounded-lg border ${isDark ? 'border-white/20' : 'border-gray-200'} shadow-lg`}>
-          <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        <div className={`${isDark ? 'bg-[#0c0c0d]' : 'bg-white'} p-3 border ${isDark ? 'border-[#c9a962]/25' : 'border-gray-200'} shadow-lg`}>
+          <p className={`font-semibold ${isDark ? 'text-[#f3eee4]' : 'text-gray-900'}`}>
             {payload[0].payload.year.toFixed(1)} Years
           </p>
-          <p className={`text-sm ${isDark ? 'text-[#6a5af9]' : 'text-indigo-600'}`}>
+          <p className={`text-sm ${isDark ? 'text-[#e8d5a3]' : 'text-indigo-600'}`}>
             Projects: {payload[0].payload.projects}
           </p>
-          <p className={`text-sm ${isDark ? 'text-[#16f2b3]' : 'text-green-600'}`}>
+          <p className={`text-sm ${isDark ? 'text-[#c9a962]' : 'text-green-600'}`}>
             Impact: {payload[0].payload.impact}%
           </p>
         </div>
@@ -43,16 +43,16 @@ export default function ExperienceVisualization() {
 
   return (
     <div className="w-full h-full overflow-x-auto">
-      <ResponsiveContainer width="100%" height={340} minWidth={300}>
+      <ResponsiveContainer width="100%" height={260} minWidth={260}>
         <AreaChart data={experienceData} margin={{ top: 10, right: 15, left: 5, bottom: 20 }}>
           <defs>
             <linearGradient id="colorProjects" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#6a5af9" stopOpacity={0.8}/>
-              <stop offset="95%" stopColor="#6a5af9" stopOpacity={0.1}/>
+              <stop offset="5%" stopColor="#c9a962" stopOpacity={0.8}/>
+              <stop offset="95%" stopColor="#c9a962" stopOpacity={0.1}/>
             </linearGradient>
             <linearGradient id="colorImpact" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#16f2b3" stopOpacity={0.8}/>
-              <stop offset="95%" stopColor="#16f2b3" stopOpacity={0.1}/>
+              <stop offset="5%" stopColor="#e8d5a3" stopOpacity={0.8}/>
+              <stop offset="95%" stopColor="#e8d5a3" stopOpacity={0.1}/>
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
@@ -70,7 +70,7 @@ export default function ExperienceVisualization() {
           <Area 
             type="monotone" 
             dataKey="projects" 
-            stroke="#6a5af9" 
+            stroke="#c9a962" 
             fillOpacity={1} 
             fill="url(#colorProjects)"
             name="Projects Completed"
@@ -78,7 +78,7 @@ export default function ExperienceVisualization() {
           <Area 
             type="monotone" 
             dataKey="impact" 
-            stroke="#16f2b3" 
+            stroke="#e8d5a3" 
             fillOpacity={1} 
             fill="url(#colorImpact)"
             name="Impact Score"

@@ -5,24 +5,24 @@ import { useTheme } from "@/app/context/ThemeContext";
 
 // Project categories distribution
 const projectsData = [
-  { name: "Full Stack", value: 4, color: "#16f2b3" },
-  { name: "Backend", value: 12, color: "#6a5af9" },
-  { name: "DevOps", value: 3, color: "#ffa366" },
-  { name: "Mobile", value: 1, color: "#a8d5ff" },
+  { name: "Full Stack", value: 4, color: "#c9a962" },
+  { name: "Backend", value: 12, color: "#e8d5a3" },
+  { name: "DevOps", value: 3, color: "#8d6b2f" },
+  { name: "Mobile", value: 1, color: "#f6e7b8" },
 ];
 
 export default function ProjectsVisualization() {
   const { theme } = useTheme();
   
   const isDark = theme === 'dark';
-  const textColor = isDark ? '#ffffff' : '#1f1f1f';
+  const textColor = isDark ? '#f3eee4' : '#1f1f1f';
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className={`${isDark ? 'bg-[#0a0d1e]' : 'bg-white'} p-3 rounded-lg border ${isDark ? 'border-white/20' : 'border-gray-200'} shadow-lg`}>
-          <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        <div className={`${isDark ? 'bg-[#0c0c0d]' : 'bg-white'} p-3 border ${isDark ? 'border-[#c9a962]/25' : 'border-gray-200'} shadow-lg`}>
+          <p className={`font-semibold ${isDark ? 'text-[#f3eee4]' : 'text-gray-900'}`}>
             {data.name}
           </p>
           <p style={{ color: data.color }} className="font-semibold">
@@ -39,7 +39,7 @@ export default function ProjectsVisualization() {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <ResponsiveContainer width="100%" height={350} className="mx-auto">
+      <ResponsiveContainer width="100%" height={280} className="mx-auto">
         <PieChart>
           <Pie
             data={projectsData}
@@ -62,7 +62,7 @@ export default function ProjectsVisualization() {
       </ResponsiveContainer>
       <div className="text-center mt-4">
         <p className={`${isDark ? 'text-white/80' : 'text-gray-700'} text-sm`}>
-          Total Projects: <span className={`font-semibold ${isDark ? 'text-[#16f2b3]' : 'text-green-600'}`}>20+</span>
+          Total Projects: <span className={`font-semibold ${isDark ? 'text-[#c9a962]' : 'text-green-600'}`}>20+</span>
         </p>
       </div>
     </div>

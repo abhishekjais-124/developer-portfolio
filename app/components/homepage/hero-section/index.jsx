@@ -1,256 +1,239 @@
-// @flow strict
 "use client";
 
 import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { FaInstagram } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
-import { RiContactsFill } from "react-icons/ri";
 import { SiLeetcode } from "react-icons/si";
+import Magnetic from "../../atelier/magnetic";
+import Tilt from "../../atelier/tilt";
+import CountUp from "../../atelier/count-up";
+import KineticName from "../../atelier/kinetic-name";
+import GridDistort from "../../atelier/grid-distort";
 
 function HeroSection() {
-  const [isTerminalVisible, setIsTerminalVisible] = useState(true);
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const stageRef = useRef(null);
+  const copyRef = useRef(null);
+  const imageRef = useRef(null);
+  const statsRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    let raf = 0;
+    const update = () => {
+      const desktop = window.matchMedia("(min-width: 1024px)").matches;
+      if (!desktop) {
+        if (stageRef.current) stageRef.current.style.transform = "";
+        if (copyRef.current) {
+          copyRef.current.style.transform = "";
+          copyRef.current.style.opacity = "";
+        }
+        if (imageRef.current) imageRef.current.style.transform = "";
+        if (statsRef.current) {
+          statsRef.current.style.opacity = "";
+          statsRef.current.style.transform = "";
+        }
+        return;
+      }
+
+      const progress = Math.min(1, window.scrollY / (window.innerHeight * 0.92));
+      const ease = 1 - (1 - progress) * (1 - progress);
+
+      if (stageRef.current) {
+        stageRef.current.style.transform = `scale(${1 + ease * 0.1})`;
+      }
+      if (copyRef.current) {
+        copyRef.current.style.transform = `translate3d(0, ${ease * 72}px, 0) scale(${1 - ease * 0.06})`;
+        copyRef.current.style.opacity = String(1 - ease * 0.92);
+      }
+      if (imageRef.current) {
+        imageRef.current.style.transform = `scale(${1 + ease * 0.55})`;
+      }
+      if (statsRef.current) {
+        statsRef.current.style.opacity = String(1 - ease * 1.15);
+        statsRef.current.style.transform = `translate3d(0, ${ease * 36}px, 0)`;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   const heroStats = [
-    { label: "Experience", value: "4+ yrs" },
-    { label: "LinkedIn", value: personalData.linkedinFollowers || "7k+" },
+    { label: "Years", value: "4+" },
+    { label: "LinkedIn", value: personalData.linkedinFollowers || "7.7k+" },
     { label: "Repositories", value: personalData.githubRepositories || "60+" },
-    { label: "Location", value: personalData.address || "Remote-friendly" },
+    { label: "Based in", value: "BLR" },
   ];
 
   return (
-    <section className="relative py-6 lg:py-14 overflow-hidden">
-      <div 
-        className="absolute inset-0 -z-10 bg-[radial-gradient(140%_120%_at_15%_10%,rgba(106,90,249,0.16),transparent_40%),radial-gradient(110%_110%_at_85%_10%,rgba(22,242,179,0.14),transparent_42%)]"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-        }}
-      />
-      <div 
-        className="absolute -inset-6 -z-20 rounded-[36px] bg-gradient-to-br from-white/5 via-transparent to-white/5 blur-3xl opacity-40"
-        style={{
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
-      />
+    <section className="relative overflow-hidden pt-[5.5rem] pb-10 sm:pt-24 lg:pt-28 lg:pb-16">
+      <GridDistort />
+      <div ref={stageRef} className="origin-center lg:will-change-transform">
+        <div className="atelier-wrap">
+          <div className="grid items-end gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8">
+            <div ref={copyRef} className="pb-2 will-change-transform lg:pb-8">
+              <div className="hero-in section-kicker" style={{ animationDelay: "80ms" }}>
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c9a962] opacity-60" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#c9a962]" />
+                </span>
+                {personalData.designation} · Bangalore
+              </div>
 
-      <div className="grid grid-cols-1 items-start lg:grid-cols-2 gap-y-10 lg:gap-14">
-        <div className="order-2 lg:order-1 flex flex-col gap-6 lg:gap-8 p-2 pb-16 md:pb-10 lg:pt-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-[#16f2b3] animate-pulse" />
-            {personalData.designation} · {personalData.address}
-          </div>
+              <KineticName />
 
-          <div className="space-y-4">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1] dark:text-white">
-              Building reliable systems with a calm, product-first mindset.
-              <span className="block text-[#16f2b3] mt-2">
-                <div className="perspective">
-                  <div className="text-3d">
-                    {personalData.name}
+              <p className="hero-in mt-5 max-w-xl text-[0.95rem] leading-7 text-[#c8c0b2] sm:mt-8 sm:text-lg sm:leading-8" style={{ animationDelay: "280ms" }}>
+                I design backend systems that stay composed at scale — payments, live AI, and platforms serving millions.
+              </p>
+
+              <div className="hero-in hero-actions mt-7 flex flex-wrap items-center gap-3 sm:mt-9" style={{ animationDelay: "380ms" }}>
+                <Magnetic>
+                  <Link href="#contact" className="btn-gold shine-parent">
+                    Enquire
+                  </Link>
+                </Magnetic>
+                <Magnetic>
+                  <button onClick={() => setIsResumeModalOpen(true)} className="btn-ghost">
+                    View dossier
+                  </button>
+                </Magnetic>
+                <Magnetic>
+                  <a
+                    href="https://drive.google.com/uc?export=download&id=10HVraDNws8YxkR9bP069HtwvHa_Q5LsN"
+                    download="Abhishek_Jaiswal_Resume.pdf"
+                    className="btn-ghost"
+                  >
+                    Download
+                    <MdDownload size={14} />
+                  </a>
+                </Magnetic>
+              </div>
+
+              <div className="hero-in mt-6 flex items-center gap-2.5 sm:mt-8 sm:gap-3" style={{ animationDelay: "480ms" }}>
+                {[
+                  { href: personalData.github, icon: <FiGithub size={16} />, label: "GitHub" },
+                  { href: personalData.linkedIn, icon: <FiLinkedin size={16} />, label: "LinkedIn" },
+                  { href: personalData.leetcode, icon: <SiLeetcode size={15} />, label: "LeetCode" },
+                  { href: personalData.instagram, icon: <FaInstagram size={16} />, label: "Instagram" },
+                ].map((item) =>
+                  item.href ? (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      aria-label={item.label}
+                      className="flex h-11 w-11 items-center justify-center border border-[#c9a962]/18 text-[#c8c0b2] transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a962] hover:text-[#c9a962]"
+                    >
+                      {item.icon}
+                    </Link>
+                  ) : null
+                )}
+              </div>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[380px] lg:mr-0 lg:max-w-[460px]">
+              <div className="pointer-events-none absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgba(201,169,98,0.22),transparent_62%)] blur-2xl sm:-inset-10" />
+              <Tilt>
+                <div className="relative overflow-hidden border border-[#c9a962]/25 bg-[#0c0c0d] shadow-[0_40px_120px_rgba(0,0,0,0.55)]">
+                  <div className="absolute left-4 top-4 z-10 text-[0.58rem] uppercase tracking-[0.24em] text-[#e8d5a3] sm:left-5 sm:top-5 sm:text-[0.62rem] sm:tracking-[0.28em]">
+                    Portrait · 01
+                  </div>
+                  <div className="overflow-hidden">
+                    <div ref={imageRef} className="origin-center lg:will-change-transform">
+                      <Image
+                        src={personalData.profile}
+                        width={720}
+                        height={900}
+                        alt="Abhishek Jaiswal"
+                        priority
+                        className="aspect-[4/5] h-auto max-h-[52vh] w-full object-cover object-top sm:max-h-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070707] via-transparent to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4 sm:p-5">
+                    <div>
+                      <p className="font-display text-2xl italic text-[#f3eee4]">Atelier</p>
+                      <p className="text-[0.62rem] uppercase tracking-[0.24em] text-[#c8c0b2]">Systems · Cloud · AI</p>
+                    </div>
+                    <p className="text-[0.62rem] uppercase tracking-[0.24em] text-[#c9a962]">Est. 2021</p>
                   </div>
                 </div>
-              </span>
-            </h1>
+              </Tilt>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 md:px-6 py-3 text-sm md:text-base font-semibold text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-all duration-200 hover:border-white/35 hover:-translate-y-[2px]"
-            >
-              <RiContactsFill size={18} /> Let&apos;s build together
-            </Link>
-            <button
-              onClick={() => setIsResumeModalOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full border border-[#16f2b3]/30 bg-[#16f2b3]/10 px-4 md:px-6 py-3 text-sm md:text-base font-semibold text-[#16f2b3] shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition-all duration-200 hover:border-[#16f2b3]/50 hover:-translate-y-[2px]"
-            >
-              View Resume
-            </button>
-            <a
-              href="https://drive.google.com/uc?export=download&id=10HVraDNws8YxkR9bP069HtwvHa_Q5LsN"
-              download="Abhishek_Jaiswal_Resume.pdf"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#16f2b3] via-[#6a5af9] to-[#f472b6] px-4 md:px-6 py-3 text-sm md:text-base font-semibold text-[#050915] shadow-[0_14px_40px_rgba(0,0,0,0.35)] transition-all duration-200 hover:translate-y-[-2px]"
-            >
-              <span>Download Resume</span>
-              <MdDownload size={18} />
-            </a>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
-            {[personalData.github, personalData.linkedIn, personalData.leetcode, personalData.instagram].map((link, idx) => {
-              if (!link) return null;
-              const icons = [
-                <FiGithub key="g" size={22} />,
-                <FiLinkedin key="l" size={22} />,
-                <SiLeetcode key="lc" size={20} />, 
-                <FaInstagram key="i" size={22} />,
-              ];
-              return (
-                <Link
-                  key={link}
-                  href={link}
-                  target="_blank"
-                  className="flex items-center justify-center h-11 w-11 rounded-full border border-white/10 bg-white/5 text-white/80 transition-all duration-300 hover:border-white/30 hover:text-white hover:-translate-y-1"
-                  aria-label="Social link"
+          <div ref={statsRef} className="mt-8 will-change-transform sm:mt-10">
+            <div className="grid grid-cols-2 border-y border-[#c9a962]/12 sm:grid-cols-4">
+              {heroStats.map((item, i) => (
+                <div
+                  key={item.label}
+                  className={`hero-in px-3 py-5 sm:px-4 sm:py-6 ${
+                    i % 2 === 1 ? "border-l border-[#c9a962]/12" : ""
+                  } ${i >= 2 ? "border-t border-[#c9a962]/12 sm:border-t-0" : ""} ${
+                    i !== 0 ? "sm:border-l sm:border-[#c9a962]/12" : ""
+                  }`}
+                  style={{ animationDelay: `${560 + i * 80}ms` }}
                 >
-                  {icons[idx]}
-                </Link>
-              );
-            })}
-          </div>
+                  <p className="text-[0.58rem] uppercase tracking-[0.2em] text-[#8d867b] sm:text-[0.62rem] sm:tracking-[0.24em]">{item.label}</p>
+                  <p className="mt-1.5 font-display text-[1.85rem] text-[#f3eee4] sm:mt-2 sm:text-4xl">
+                    <CountUp value={item.value} instant />
+                  </p>
+                </div>
+              ))}
+            </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-2 max-w-3xl">
-            {heroStats.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-sm text-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
-              >
-                <div className="text-xs uppercase tracking-[0.18em] text-white/60">{item.label}</div>
-                <div className="mt-1 text-lg font-semibold text-white">{item.value}</div>
-              </div>
-            ))}
+            <div className="mt-10 hidden items-center gap-4 lg:flex">
+              <span className="text-[0.62rem] uppercase tracking-[0.28em] text-[#8d867b]">Scroll</span>
+              <span className="relative h-12 w-px overflow-hidden bg-[#c9a962]/20">
+                <span className="scroll-hint absolute inset-x-0 top-0 h-4 bg-[#c9a962]" />
+              </span>
+            </div>
           </div>
         </div>
-
-        {isTerminalVisible && (
-          <div 
-            className="order-1 lg:order-2 relative rounded-2xl border border-white/10 bg-gradient-to-br from-[#0d1224]/80 via-[#0a0d1e]/80 to-[#0f0c32]/80 shadow-[0_25px_80px_rgba(0,0,0,0.45)] overflow-hidden transition-all duration-500 animate-fadeIn"
-            style={{
-              transform: `translateY(${scrollY * -0.15}px)`,
-            }}
-          >
-            <div className="absolute inset-0 opacity-50 bg-[radial-gradient(circle_at_20%_20%,rgba(22,242,179,0.14),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(106,90,249,0.2),transparent_32%)]" />
-            <div className="absolute -left-20 -top-16 h-64 w-64 rounded-full bg-[#16f2b3]/20 blur-3xl" />
-            <div className="absolute -right-10 bottom-0 h-56 w-56 rounded-full bg-[#f472b6]/15 blur-3xl" />
-
-          <div className="flex flex-row">
-            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600" />
-            <div className="h-[1px] w-full bg-gradient-to-r from-violet-600 to-transparent" />
-          </div>
-          <div className="px-4 lg:px-8 py-5 flex items-center gap-2">
-            <button 
-              onClick={() => setIsTerminalVisible(false)} 
-              className="h-3 w-3 rounded-full bg-red-400 hover:bg-red-500 transition-colors cursor-pointer"
-              aria-label="Close terminal"
-            />
-            <div className="h-3 w-3 rounded-full bg-orange-400" />
-            <div className="h-3 w-3 rounded-full bg-green-300" />
-            <span className="text-xs text-white/60 ml-auto bg-white/5 px-2 py-1 rounded-full border border-white/10">ai ~/portfolio</span>
-          </div>
-          <div className="overflow-hidden border-t border-white/10 px-4 lg:px-8 py-5 lg:py-8 relative">
-            <div className="absolute inset-0 opacity-20 bg-[linear-gradient(120deg,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:120px_120px]" />
-            <code className="relative font-mono text-xs md:text-sm lg:text-base leading-6 text-[#d1d6f0]">
-              <div className="blink">
-                <span className="mr-2 text-pink-400">const</span>
-                <span className="mr-2 text-white">engineer</span>
-                <span className="mr-2 text-pink-400">=</span>
-                <span className="text-gray-400">{'{'}</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-white">name:</span>
-                <span className="text-gray-400">{`'`}</span>
-                <span className="text-amber-300">{personalData.name}</span>
-                <span className="text-gray-400">{`',`}</span>
-              </div>
-              <div className="ml-4 lg:ml-8 mr-2">
-                <span className=" text-white">focus:</span>
-                <span className="text-gray-400">{`['`}</span>
-                <span className="text-amber-300">Systems Design</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Backend</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Cloud</span>
-                <span className="text-gray-400">{"'],"}</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-white">values:</span>
-                <span className="text-gray-400">{`['`}</span>
-                <span className="text-amber-300">Reliability</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Latency</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Impact</span>
-                <span className="text-gray-400">{"']"}</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-green-400">ship:</span>
-                <span className="text-orange-300">function</span>
-                <span className="text-gray-400">{'() {'}</span>
-              </div>
-              <div>
-                <span className="ml-8 lg:ml-16 mr-2 text-orange-300">return</span>
-                <span className="text-gray-400">{`(`}</span>
-              </div>
-              <div>
-                <span className="ml-12 lg:ml-24 text-cyan-300">design</span>
-                <span className="mr-2 text-gray-400">{'('}</span>
-                <span className="text-white">"Scalable"</span>
-                <span className="text-gray-400">{')'}</span>
-                <span className="text-amber-300">&amp;&amp;</span>
-              </div>
-              <div>
-                <span className="ml-12 lg:ml-24 text-cyan-300">deliver</span>
-                <span className="mr-2 text-gray-400">{'('}</span>
-                <span className="text-white">"Impact"</span>
-                <span className="text-gray-400">{')'}</span>
-                <span className="text-amber-300">&amp;&amp;</span>
-              </div>
-              <div>
-                <span className="ml-12 lg:ml-24 text-cyan-300">learn</span>
-                <span className="mr-2 text-gray-400">{'('}</span>
-                <span className="text-white">"Daily"</span>
-                <span className="text-gray-400">{')'}</span>
-              </div>
-              <div><span className="ml-8 lg:ml-16 mr-2 text-gray-400">{`);`}</span></div>
-              <div><span className="ml-4 lg:ml-8 text-gray-400">{`};`}</span></div>
-              <div><span className="text-gray-400">{`};`}</span></div>
-            </code>
-          </div>
-          </div>
-        )}
       </div>
 
-      {/* Resume Modal */}
       {isResumeModalOpen && (
-        <div 
-          className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/80 backdrop-blur-md p-2 sm:p-4 animate-fadeIn"
+        <div
+          className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/80 p-0 backdrop-blur-md sm:items-center sm:p-3"
           onClick={() => setIsResumeModalOpen(false)}
         >
-          <div 
-            className="relative w-full max-w-7xl h-[95vh] rounded-2xl border border-white/20 bg-[#0d1224]/95 shadow-[0_25px_100px_rgba(0,0,0,0.5)] overflow-hidden"
+          <div
+            className="relative h-[92dvh] w-full max-w-6xl overflow-hidden border border-[#c9a962]/20 bg-[#0c0c0d] sm:h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-white/5">
-              <h3 className="text-base sm:text-lg font-semibold text-white">Resume - {personalData.name}</h3>
+            <div className="flex items-center justify-between gap-3 border-b border-[#c9a962]/15 px-4 py-3 sm:px-5 sm:py-4">
+              <h3 className="truncate font-display text-lg text-[#f3eee4] sm:text-xl">Dossier — {personalData.name}</h3>
               <button
                 onClick={() => setIsResumeModalOpen(false)}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white hover:bg-red-500/20 hover:border-red-500/50 hover:text-red-400 transition-all duration-200 text-xl"
+                className="flex h-9 w-9 items-center justify-center border border-[#c9a962]/25 text-[#f3eee4] hover:border-[#c9a962] hover:text-[#c9a962]"
                 aria-label="Close modal"
               >
                 ×
               </button>
             </div>
-
-            {/* Resume Content */}
-            <div className="h-[calc(100%-3.5rem)] sm:h-[calc(100%-4rem)] overflow-auto bg-white">
+            <div className="h-[calc(100%-3.6rem)] bg-white">
               <iframe
                 src="https://drive.google.com/file/d/10HVraDNws8YxkR9bP069HtwvHa_Q5LsN/preview"
-                className="w-full h-full border-0"
+                className="h-full w-full border-0"
                 allow="autoplay"
                 title="Resume"
               />
@@ -260,6 +243,6 @@ function HeroSection() {
       )}
     </section>
   );
-};
+}
 
 export default HeroSection;

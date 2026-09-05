@@ -1,74 +1,144 @@
-// @flow strict
+"use client";
+
 import Link from "next/link";
-import { FiArrowUpRight } from "react-icons/fi";
+import { useEffect, useState } from "react";
 import { personalData } from "@/utils/data/personal-data";
-// Theme toggle removed to enforce dark-only theme
+import Magnetic from "./atelier/magnetic";
+import ProximityNav from "./atelier/proximity-nav";
 
 const navLinks = [
   { href: "/#about", label: "About" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#education", label: "Education" },
-  { href: "/#achievements", label: "Achievements" },
-  { href: "/#projects", label: "Projects" },
+  { href: "/#experience", label: "Work" },
+  { href: "/#projects", label: "Selected" },
+  { href: "/#achievements", label: "Marks" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 function Navbar() {
-  return (
-    <nav className="sticky top-0 sm:top-4 z-[9998]">
-      <div className="relative overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/5 dark:bg-white/5 backdrop-blur-xl px-4 sm:px-6 py-3 dark:shadow-[0_20px_80px_rgba(0,0,0,0.45)]">
-        <div className="absolute inset-0 opacity-60 dark:bg-[radial-gradient(circle_at_10%_20%,rgba(22,242,179,0.15),transparent_45%),radial-gradient(circle_at_90%_0%,rgba(106,90,249,0.18),transparent_40%)]" />
-        <div className="absolute inset-x-6 top-0 h-px dark:bg-gradient-to-r dark:from-transparent dark:via-white/40 dark:to-transparent" />
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
-        <div className="relative flex items-center justify-between gap-3">
-          <Link href="/" className="flex items-center gap-3 group">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#16f2b3] via-[#6a5af9] to-[#f472b6] dark:text-[#050915] font-semibold shadow-[0_10px_30px_rgba(0,0,0,0.35)] group-hover:scale-[1.04] transition-transform duration-300">
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 18);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [open]);
+
+  return (
+    <nav className="fixed inset-x-0 top-0 z-[80] pt-[env(safe-area-inset-top)]">
+      <div
+        className={`transition-all duration-500 ${
+          scrolled || open
+            ? "border-b border-[#c9a962]/15 bg-[#070707]/80 backdrop-blur-xl"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="atelier-wrap flex items-center justify-between py-3 sm:py-4">
+          <Link href="/" className="group flex min-w-0 items-center gap-2.5 sm:gap-3" onClick={() => setOpen(false)}>
+            <span className="relative flex h-10 w-10 shrink-0 items-center justify-center border border-[#c9a962]/40 font-display text-lg text-[#c9a962] transition-colors group-hover:bg-[#c9a962] group-hover:text-[#070707]">
+              <span className="pulse-core absolute inset-0 border border-[#c9a962]/30" />
               AJ
             </span>
-            <span className="text-lg font-semibold dark:text-white">ABHISHEK</span>
+            <span className="truncate text-[0.62rem] font-medium uppercase tracking-[0.22em] text-[#f3eee4] sm:text-[0.7rem] sm:tracking-[0.28em]">
+              Abhishek
+            </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-1 rounded-full dark:ring-1 dark:ring-white/5 dark:bg-white/5 px-1 py-1 backdrop-blur-sm dark:shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+          <ProximityNav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 lg:px-4 py-2 rounded-full text-sm font-medium dark:text-white/80 transition-all duration-200 dark:hover:text-white dark:hover:bg-white/10"
+                data-proximity
+                className="text-[0.68rem] font-medium uppercase tracking-[0.26em] text-[#c8c0b2]"
               >
                 {item.label}
               </Link>
             ))}
-          </div>
+          </ProximityNav>
 
-          <div className="flex items-center gap-2">
-            <Link
-              href="#contact"
-              className="hidden sm:flex items-center gap-2 rounded-full dark:border-white/15 border dark:bg-white/5 px-3 py-2 text-sm font-semibold dark:text-white dark:hover:border-white/30 dark:hover:bg-white/10 transition-all duration-200"
+          <div className="flex items-center gap-3">
+            {personalData?.resume && (
+              <Magnetic>
+                <Link
+                  href={personalData.resume}
+                  target="_blank"
+                  className="hidden border border-[#c9a962]/40 px-4 py-2 text-[0.65rem] font-medium uppercase tracking-[0.24em] text-[#e8d5a3] transition-colors hover:border-[#c9a962] hover:bg-[#c9a962] hover:text-[#070707] sm:inline-flex"
+                >
+                  Resume
+                </Link>
+              </Magnetic>
+            )}
+            <button
+              className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 border border-[#c9a962]/30 lg:hidden"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
             >
-              Let&apos;s Talk
-            </Link>
+              <span className={`h-px w-4 bg-[#f3eee4] transition ${open ? "translate-y-[4px] rotate-45" : ""}`} />
+              <span className={`h-px w-4 bg-[#f3eee4] transition ${open ? "-translate-y-[4px] -rotate-45" : ""}`} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`fixed inset-x-0 bottom-0 z-[79] bg-[#070707]/96 backdrop-blur-xl transition-opacity duration-300 lg:hidden ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        style={{ top: "calc(4.35rem + env(safe-area-inset-top, 0px))" }}
+      >
+        <div className="atelier-wrap flex h-full flex-col justify-between pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-8">
+          <div className="flex flex-col gap-1">
+            {navLinks.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="flex min-h-14 items-baseline justify-between border-b border-[#c9a962]/12 py-4"
+              >
+                <span className="font-display text-3xl italic text-[#f3eee4] sm:text-4xl">{item.label}</span>
+                <span className="font-display text-sm text-[#c9a962]/70">0{index + 1}</span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-col gap-4">
             {personalData?.resume && (
               <Link
                 href={personalData.resume}
                 target="_blank"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#16f2b3] via-[#6a5af9] to-[#f472b6] px-3 sm:px-4 py-2 text-sm font-semibold dark:text-[#050915] shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-transform duration-200 hover:translate-y-[-1px]"
+                onClick={() => setOpen(false)}
+                className="btn-gold w-full"
               >
-                Resume <FiArrowUpRight size={16} />
+                Resume
               </Link>
             )}
+            <p className="text-[0.62rem] uppercase tracking-[0.2em] text-[#8d867b]">Bangalore · Available</p>
           </div>
-        </div>
-
-        <div className="md:hidden mt-3 flex items-center gap-2 overflow-x-auto">
-          {navLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-3 py-1.5 rounded-full text-xs font-medium text-white/80 border border-white/10 bg-white/5 flex-shrink-0"
-            >
-              {item.label}
-            </Link>
-          ))}
         </div>
       </div>
     </nav>

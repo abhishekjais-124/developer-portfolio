@@ -1,187 +1,103 @@
-// @flow strict
 "use client";
 
-import { personalData } from "@/utils/data/personal-data";
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import GlowCard from "../../helper/glow-card";
 import { FaPlane, FaMap, FaCamera, FaGamepad } from "react-icons/fa";
 import { SiYoutube } from "react-icons/si";
-import { FiHeart } from "react-icons/fi";
-import { useState } from "react";
+import Reveal from "../../atelier/reveal";
+import SectionFx from "../../atelier/section-fx";
 
 function HobbiesSection() {
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   const hobbiesContent = [
-    {
-      id: 1,
-      title: "Gaming",
-      description: "Playing, watching, and exploring latest games in my free time",
-      icon: <FaGamepad size={40} className="text-orange-500" />,
-      gradient: "from-orange-500/20 to-pink-500/20",
-      border: "border-orange-500/50",
-      shadow: "shadow-orange-500/20",
-      link: null,
-      stats: "Let's play!"
-    },
-    {
-      id: 2,
-      title: "Travelling",
-      description: "Exploring new places and experiencing diverse cultures",
-      icon: <FaPlane size={40} className="text-blue-500" />,
-      gradient: "from-blue-500/20 to-cyan-500/20",
-      border: "border-blue-500/50",
-      shadow: "shadow-blue-500/20",
-      link: null,
-      stats: "Let's travel!"
-    },
-    {
-      id: 3,
-      title: "Exploring",
-      description: "Discovering hidden gems, unique spots, and local experiences",
-      icon: <FaMap size={40} className="text-emerald-500" />,
-      gradient: "from-emerald-500/20 to-teal-500/20",
-      border: "border-emerald-500/50",
-      shadow: "shadow-emerald-500/20",
-      link: null,
-      stats: "Let's explore!"
-    },
-    {
-      id: 4,
-      title: "Photography",
-      description: "Capturing moments and beautiful memories from travels",
-      icon: <FaCamera size={40} className="text-purple-500" />,
-      gradient: "from-purple-500/20 to-pink-500/20",
-      border: "border-purple-500/50",
-      shadow: "shadow-purple-500/20",
-      link: null,
-      stats: "Let's capture!"
-    }
+    { title: "Gaming", description: "Worlds, systems, and the joy of getting better.", icon: <FaGamepad size={18} />, image: "/image/ayla.jpg" },
+    { title: "Travelling", description: "New cities, slower days, wider eyes.", icon: <FaPlane size={18} />, image: "/image/travel.jpg" },
+    { title: "Exploring", description: "Side streets, local food, unplanned turns.", icon: <FaMap size={18} />, image: "/image/real-estate.jpg" },
+    { title: "Photography", description: "Light, faces, and the quiet in between.", icon: <FaCamera size={18} />, image: "/image/crefin.jpg" },
   ];
 
-  const VideoModal = ({ videoId, onClose }) => {
-    return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" onClick={onClose}>
-        <div className="relative w-full max-w-4xl aspect-video rounded-lg overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 z-10 h-9 w-9 rounded-full bg-white text-gray-900 hover:bg-gray-200 flex items-center justify-center shadow-lg transition-all"
-            aria-label="Close video"
-          >
-            ×
-          </button>
-          <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-            title="YouTube video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div id="hobbies" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]" suppressHydrationWarning>
-
-      <div className="flex justify-center my-6 lg:py-10">
-        <div className="flex flex-col items-center gap-3">
-          <div className="flex items-center gap-3">
-            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-pink-500/60 to-transparent" />
-            <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm md:text-base font-semibold text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur flex items-center gap-2">
-              <FiHeart className="text-pink-400" size={18} />
-              Interests & Hobbies
-            </span>
-            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#16f2b3]/60 to-transparent" />
-          </div>
-          <button
-            onClick={() => setSelectedVideo("2SM-cJ_SbHg")}
-            className="hover:scale-110 transition-transform duration-300 p-2 rounded-full hover:bg-red-500/10"
-            title="Watch on YouTube"
-          >
-            <SiYoutube size={28} className="text-red-500 hover:text-red-400" />
-          </button>
-        </div>
-      </div>
-
-      <div className="relative py-10 lg:py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <p className="text-center text-gray-300 text-sm lg:text-base mb-12 max-w-3xl mx-auto">
-            Beyond coding, I love exploring new places, traveling around the world, and sharing my tech journey through content creation.
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {hobbiesContent.map((item, index) => (
-              <div key={item.id} className={index === hobbiesContent.length - 1 && hobbiesContent.length % 2 === 1 ? "col-span-2 md:col-span-1" : ""}>
-                <GlowCard identifier={`hobby-${item.id}`} className="h-full">
-                <div className="h-full">
-                  {item.link ? (
-                    <Link href={item.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-                      <div className={`relative p-6 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] h-full min-h-[340px] flex flex-col justify-between group hover:border-white/20 transition-all duration-500 overflow-hidden cursor-pointer`}>
-                        <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-30 group-hover:opacity-50 transition-opacity duration-500`} />
-                        <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-600/20 blur-2xl group-hover:blur-3xl transition-all duration-700" />
-                        
-                        <div className="relative z-10">
-                          <div className="flex justify-center mb-4">
-                            <div className="p-3 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
-                              {item.icon}
-                            </div>
-                          </div>
-                          <h3 className="text-lg font-semibold text-center text-white mb-3 group-hover:text-pink-300 transition-colors">
-                            {item.title}
-                          </h3>
-                          <p className="text-sm text-gray-300 text-center leading-relaxed">
-                            {item.description}
-                          </p>
-                        </div>
-                        <div className="relative z-10 text-center mt-4">
-                          <p className="text-[#16f2b3] font-semibold text-sm group-hover:text-[#5cf8d1] transition-colors">
-                            {item.stats}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  ) : (
-                    <div className={`relative p-6 rounded-xl bg-gradient-to-br from-[#0d1228]/60 via-[#0b1024]/60 to-[#0a0d1e]/60 backdrop-blur-sm border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)] h-full min-h-[340px] flex flex-col justify-between group hover:border-white/20 transition-all duration-500 overflow-hidden`}>
-                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-30 group-hover:opacity-50 transition-opacity duration-500`} />
-                      <div className="absolute -top-12 -right-12 h-24 w-24 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-600/20 blur-2xl group-hover:blur-3xl transition-all duration-700" />
-                      
-                      <div className="relative z-10">
-                        <div className="flex justify-center mb-4">
-                          <div className="p-3 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
-                            {item.icon}
-                          </div>
-                        </div>
-                        <h3 className="text-lg font-semibold text-center text-white mb-3 group-hover:text-pink-300 transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-gray-300 text-center leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-                      <div className="relative z-10 text-center mt-4">
-                        <p className="text-[#16f2b3] font-semibold text-sm group-hover:text-[#5cf8d1] transition-colors">
-                          {item.stats}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </GlowCard>
+    <section id="hobbies" className="relative overflow-hidden py-10 lg:py-16">
+      <SectionFx variant="stars" />
+      <div className="atelier-wrap">
+        <div className="mb-10 flex flex-col gap-5 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <Reveal>
+              <div className="section-kicker">
+                <span className="font-display text-lg tracking-normal text-[#c9a962]">11</span>
+                <span className="kicker-line h-px w-8 bg-[#c9a962]/50" />
+                <span>Away from the desk</span>
               </div>
-            ))}
+            </Reveal>
+            <Reveal delay={80} className="clip-reveal" variant="clip-reveal">
+              <h2 className="mt-3 font-display text-[2.15rem] leading-[1.08] text-[#f3eee4] sm:mt-4 sm:text-5xl sm:leading-[1.05]">
+                <span>Life, not just load.</span>
+              </h2>
+            </Reveal>
           </div>
+          <Reveal delay={120}>
+            <button
+              onClick={() => setSelectedVideo("2SM-cJ_SbHg")}
+              className="inline-flex min-h-11 shrink-0 items-center gap-2 pb-1 text-[0.65rem] uppercase tracking-[0.22em] text-[#c9a962]"
+            >
+              <SiYoutube size={16} /> Watch a glimpse
+            </button>
+          </Reveal>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {hobbiesContent.map((item, index) => (
+            <Reveal key={item.title} delay={index * 70} className="min-w-0 h-full">
+              <article className="group flex h-full min-w-0 flex-col overflow-hidden border border-[#c9a962]/15 bg-[#070707]">
+                <div className="relative h-36 w-full shrink-0 overflow-hidden sm:h-44">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="ken-burns object-cover opacity-70 transition duration-700 group-hover:opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-[#070707]/25 to-transparent" />
+                </div>
+                <div className="flex flex-1 flex-col px-5 pb-6 pt-5">
+                  <div className="flex h-10 w-10 items-center justify-center border border-[#c9a962]/20 text-[#c9a962]">
+                    {item.icon}
+                  </div>
+                  <h3 className="mt-4 font-display text-2xl leading-tight text-[#f3eee4]">{item.title}</h3>
+                  <p className="mt-3 min-h-[3rem] text-sm leading-6 text-[#8d867b]">{item.description}</p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
 
       {selectedVideo && (
-        <VideoModal videoId={selectedVideo} onClose={() => setSelectedVideo(null)} />
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <div className="relative aspect-video w-full max-w-4xl overflow-hidden border border-[#c9a962]/20" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center bg-[#f3eee4] text-[#070707]"
+              aria-label="Close video"
+            >
+              ×
+            </button>
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+              title="YouTube video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
       )}
-    </div>
+    </section>
   );
 }
 

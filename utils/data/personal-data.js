@@ -2,7 +2,7 @@ export const personalData = {
   name: "Abhishek Jaiswal",
   profile: "/profile4.png",
   designation: "Software Engineer",
-  description: "Software Engineer with 4+ years of experience specializing in scalable backend systems, cloud platforms,large-scale distributed architectures, microservices, and AI-driven development. Proven expertise inbuilding high-performance APIs, driving user engagement, optimizing systems for millions of users globally. Passionate about leveraging cutting-edge technologies to solve complex problems and deliver impactful solutions.",
+  description: "Software Engineer with 4+ years of experience specializing in scalable backend systems, cloud platforms, large-scale distributed architectures, microservices, and AI-driven development. Proven expertise in building high-performance APIs, driving user engagement, and optimizing systems for millions of users globally. Passionate about leveraging cutting-edge technologies to solve complex problems and deliver impactful solutions.",
   email: "abhishekjaiswal124@gmail.com",
   phone: "+91-****815667",
   address: "Bangalore, India",

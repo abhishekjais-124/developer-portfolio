@@ -3,32 +3,24 @@
 import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 
-const DEFAULT_BTN_CLS =
-  "fixed bottom-8 right-6 z-50 flex items-center rounded-full bg-gradient-to-r from-pink-500 to-violet-600 p-4 hover:text-xl transition-all duration-300 ease-out";
-const SCROLL_THRESHOLD = 50;
-
 const ScrollToTop = () => {
-  const [btnCls, setBtnCls] = useState(DEFAULT_BTN_CLS);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > SCROLL_THRESHOLD) {
-        setBtnCls(DEFAULT_BTN_CLS.replace(" hidden", ""));
-      } else {
-        setBtnCls(DEFAULT_BTN_CLS + " hidden");
-      }
-    };
+    const handleScroll = () => setVisible(window.scrollY > 240);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll, { passive: true });
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const onClickBtn = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  if (!visible) return null;
 
   return (
-    <button className={btnCls} onClick={onClickBtn}>
-      <FaArrowUp />
+    <button
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-4 z-50 flex h-12 w-12 items-center justify-center border border-[#c9a962]/40 bg-[#070707]/80 text-[#c9a962] backdrop-blur-md transition hover:bg-[#c9a962] hover:text-[#070707] sm:right-6"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+    >
+      <FaArrowUp size={14} />
     </button>
   );
 };

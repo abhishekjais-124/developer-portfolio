@@ -1,131 +1,134 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { MdVerified } from "react-icons/md";
+import { FiLinkedin } from "react-icons/fi";
 import { recommendations } from "@/utils/data/recommendations";
-import GlowCard from "../../helper/glow-card";
-import { FiMessageSquare } from "react-icons/fi";
+import { personalData } from "@/utils/data/personal-data";
+import Reveal from "../../atelier/reveal";
+import SectionHeading from "../../atelier/section-heading";
+import SectionFx from "../../atelier/section-fx";
 
-const CARD_INTERVAL_MS = 3000;
+function initials(name) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}
+
+const mix = [
+  { label: "Teammates", value: 3, width: "100%" },
+  { label: "Mentors", value: 1, width: "33%" },
+  { label: "Leads", value: 1, width: "33%" },
+  { label: "Peers", value: 1, width: "33%" },
+];
 
 function Recommendations() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const timerRef = useRef(null);
-
-  useEffect(() => {
-    if (paused) {
-      clearInterval(timerRef.current);
-      return;
-    }
-
-    timerRef.current = setInterval(() => {
-      setIndex((i) => (i + 1) % recommendations.length);
-    }, CARD_INTERVAL_MS);
-
-    return () => clearInterval(timerRef.current);
-  }, [paused]);
-
-  const item = recommendations[index];
-  const direction = index % 2 === 0 ? "from-left" : "from-right";
-  const progressKey = `${item.id}-${index}-progress`;
-
   return (
-    <section id="recommendations" className="relative z-40 border-t my-12 lg:my-24 border-[#25213b]">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(120%_140%_at_20%_10%,rgba(82,113,255,0.14),transparent_55%),radial-gradient(90%_120%_at_80%_0%,rgba(0,224,255,0.12),transparent_60%),#07090f]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30" style={{backgroundImage:"radial-gradient(circle at 20% 20%, rgba(106,90,249,0.15) 0, transparent 30%), radial-gradient(circle at 80% 40%, rgba(22,242,179,0.18) 0, transparent 28%)"}} />
+    <section id="recommendations" className="relative overflow-hidden py-10 lg:py-16">
+      <SectionFx variant="blob" />
+      <div className="atelier-wrap">
+        <SectionHeading
+          index="09"
+          kicker="Voices"
+          title="What colleagues keep."
+        />
 
-      <div className="flex justify-center my-6 lg:py-10">
-        <div className="flex flex-col items-center gap-3">
-          <div className="flex items-center gap-3">
-            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-pink-500/60 to-transparent" />
-            <span className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm md:text-base font-semibold text-white shadow-[0_12px_40px_rgba(0,0,0,0.35)] backdrop-blur">
-              Recommendations
-            </span>
-            <span className="hidden sm:block h-[1px] w-16 bg-gradient-to-r from-transparent via-[#16f2b3]/60 to-transparent" />
-          </div>
-          <p className="text-xs sm:text-sm text-[#c7d2ff]/80 max-w-2xl text-center px-4">
-            Words from teammates and mentors about how we shipped, collaborated, and delivered under pressure.
-          </p>
-        </div>
-      </div>
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div
-          key={`${item.id}-${index}`}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocus={() => setPaused(true)}
-          onBlur={() => setPaused(false)}
-          className={direction}
-        >
-          <GlowCard identifier={`reco-${item.id}`} className="bg-gradient-to-br from-[#0d1228]/90 via-[#0b1024]/90 to-[#0a0d1e]/90 border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
-            <div className="relative w-full overflow-hidden rounded-xl p-6 sm:p-8 text-white flex flex-col gap-4 min-h-[360px] sm:min-h-[340px] lg:min-h-[320px]">
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute -left-1/3 top-1/4 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,rgba(0,245,196,0.14),transparent_55%)] blur-2xl" />
-                <div className="absolute right-0 top-0 h-44 w-44 rounded-full bg-[radial-gradient(circle_at_center,rgba(82,113,255,0.14),transparent_60%)] blur-2xl" />
-                <div className="absolute inset-0 opacity-30 bg-[linear-gradient(120deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:80px_80px]" />
-              </div>
-
-              <div className="relative flex items-start gap-4">
-                <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#16f2b3]/20 via-[#6a5af9]/20 to-[#f472b6]/20 border border-white/10 flex items-center justify-center text-[#16f2b3]">
-                  <FiMessageSquare size={22} />
-                </div>
-                <div className="flex-1 flex flex-col gap-1.5">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-lg font-semibold text-white">{item.name}</span>
-                  </div>
-                  <div className="text-sm text-[#9eb3ff] leading-snug">{item.title}</div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-[#8da0c3] leading-snug">
-                    <span className="px-2 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] uppercase tracking-[0.14em] text-white/80">{item.date}</span>
-                    <span className="px-2 py-1 rounded-full bg-[#16f2b3]/10 text-[#16f2b3] border border-[#16f2b3]/20">{item.relationship}</span>
-                  </div>
-                </div>
-              </div>
-
-              <p className="relative text-base leading-relaxed text-[#d8e5ff]">
-                “{item.quote}”
+        <Reveal>
+          <div className="atelier-card flex flex-col justify-between gap-6 p-5 sm:gap-8 sm:p-8 lg:flex-row lg:items-center lg:gap-16">
+            <div className="max-w-lg">
+              <p className="text-sm leading-7 text-[#8d867b] sm:text-base">
+                Mentors, leads, and teammates — the people who saw the work up close.
               </p>
-
-              <div className="relative mt-auto pt-2">
-                <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden">
-                  <div
-                    key={progressKey}
-                    className="h-full bg-gradient-to-r from-[#16f2b3] via-[#6a5af9] to-[#f472b6] animate-progress"
-                    style={{ animationDuration: `${CARD_INTERVAL_MS}ms`, animationPlayState: paused ? "paused" : "running" }}
-                  />
-                </div>
+              <Link
+                href={personalData.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold mt-6 w-full sm:w-fit"
+              >
+                Read on LinkedIn
+                <FiLinkedin size={14} />
+              </Link>
+            </div>
+            <div className="flex w-full min-w-0 flex-col gap-6 bg-[#070707] p-4 sm:flex-row sm:items-center sm:gap-8 sm:p-6 lg:w-auto lg:min-w-[28rem]">
+              <div className="text-center sm:text-left">
+                <p className="font-display text-5xl leading-none text-[#f3eee4]">{recommendations.length}</p>
+                <p className="mt-2 text-[0.62rem] uppercase tracking-[0.18em] text-[#c9a962]">Recommendations</p>
+                <p className="mt-2 text-xs text-[#8d867b]">Written in public</p>
+              </div>
+              <div className="grid min-w-0 flex-1 grid-cols-[auto_1fr_2rem] items-center gap-x-3 gap-y-2 text-[0.68rem] text-[#c8c0b2]">
+                {mix.map((row) => (
+                  <div key={row.label} className="contents">
+                    <span className="text-right text-[#8d867b]">{row.label}</span>
+                    <div className="h-1.5 overflow-hidden bg-[#c9a962]/15">
+                      <div className="h-full bg-[#c9a962]" style={{ width: row.width }} />
+                    </div>
+                    <span className="text-[#8d867b]">{row.value}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </GlowCard>
-        </div>
-      </div>
+          </div>
+        </Reveal>
 
-      <style jsx>{`
-        .reco-card {
-          animation: fadeIn 320ms ease, swap 480ms ease;
-        }
-        .from-left {
-          --offset: -32px;
-        }
-        .from-right {
-          --offset: 32px;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes swap {
-          from { transform: translateX(var(--offset)); }
-          to { transform: translateX(0); }
-        }
-        .animate-progress {
-          animation: progressLinear linear forwards;
-        }
-        @keyframes progressLinear {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-      `}</style>
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {recommendations.map((item, i) => (
+            <Reveal key={item.id} delay={i * 60} className="h-full min-w-0">
+              <article className="atelier-card flex h-full flex-col gap-4 p-5 transition-[border-color] duration-300 hover:border-[#c9a962]/40 sm:p-6">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#c9a962]/30 bg-[#c9a962]/10 font-display text-sm text-[#e8d5a3]">
+                      {initials(item.name)}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5">
+                        <p className="truncate text-sm font-medium text-[#f3eee4]">{item.name}</p>
+                        <MdVerified className="shrink-0 text-[#c9a962]" size={15} title="LinkedIn recommendation" />
+                      </div>
+                      <p className="mt-0.5 truncate text-[0.68rem] text-[#8d867b]">{item.title}</p>
+                    </div>
+                  </div>
+                  <p className="shrink-0 pt-1 text-[0.62rem] uppercase tracking-[0.12em] text-[#556677]">
+                    {item.date}
+                  </p>
+                </div>
+                <p className="flex-1 text-sm leading-relaxed text-[#c8c0b2]">“{item.quote}”</p>
+                <div className="flex items-center justify-between gap-3 border-t border-[#c9a962]/12 pt-4">
+                  <p className="text-[0.62rem] uppercase tracking-[0.16em] text-[#8d867b]">
+                    {item.relationship}
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={120}>
+          <div className="relative mt-8 overflow-hidden border border-[#c9a962]/16 bg-gradient-to-r from-[#0c0c0d] to-[#141210] p-6 sm:mt-10 sm:p-8 md:p-12">
+            <div className="pointer-events-none absolute -right-10 -top-10 h-64 w-64 rounded-full bg-[#c9a962] opacity-20 blur-3xl" />
+            <div className="relative z-10 flex flex-col items-center justify-between gap-6 md:flex-row md:text-left">
+              <div className="max-w-xl text-center md:text-left">
+                <h3 className="font-display text-2xl text-[#f3eee4] md:text-3xl">The rest lives on LinkedIn.</h3>
+                <p className="mt-3 text-sm leading-7 text-[#8d867b] md:text-base">
+                  These are the notes colleagues left in public. Open the profile for the full thread.
+                </p>
+              </div>
+              <Link
+                href={personalData.linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold w-full shrink-0 sm:w-auto"
+              >
+                Open profile
+                <FiLinkedin size={14} />
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

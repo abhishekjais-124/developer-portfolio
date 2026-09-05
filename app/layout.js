@@ -1,44 +1,60 @@
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/footer";
 import ScrollToTop from "./components/helper/scroll-to-top";
 import Navbar from "./components/navbar";
+import Atmosphere from "./components/atelier/atmosphere";
+import LuxuryCursor from "./components/atelier/cursor";
+import ScrollProgress from "./components/atelier/scroll-progress";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./css/card.scss";
 import "./css/globals.scss";
-const inter = Inter({ subsets: ["latin"] });
-const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
+
+const display = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-display-family",
+});
+
+const sans = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-sans-family",
+});
 
 export const metadata = {
-  title: "Portfolio of Abhishek - Software Developer",
+  title: "Abhishek Jaiswal — Software Engineer",
   description:
-    "This is the portfolio of Abhishek. I am a full stack developer and a self taught developer. I love to learn new things and I am always open to collaborating with others. I am a quick learner and I am always looking for new challenges.",
+    "Senior Software Engineer in Bangalore. I design calm, high-scale backend systems, cloud platforms, and AI-driven products used by millions.",
   manifest: "/manifest.json",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   icons: {
     icon: "/favicon.ico",
   },
   metadataBase: new URL("https://abhishekjaiswal.dev"),
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
-      <body className={`${inter.className} ${display.variable} bg-[#050915] dark:bg-[#050915] antialiased transition-colors duration-500`}>
+      <body className={`${display.variable} ${sans.variable} font-sans bg-[#070707] text-[#f3eee4] antialiased`}>
         <ThemeProvider>
-          <div className="pointer-events-none fixed inset-0 -z-20">
-            <div className="absolute inset-0 dark:bg-[radial-gradient(120%_120%_at_15%_20%,rgba(22,242,179,0.18),transparent_45%),radial-gradient(120%_120%_at_80%_-10%,rgba(106,90,249,0.22),transparent_40%)]" />
-            <div className="absolute inset-0 opacity-25 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.04)_1px,transparent_1px)] dark:bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:120px_120px]" />
-            <div className="absolute inset-0 dark:bg-[radial-gradient(circle_at_20%_80%,rgba(244,114,182,0.14),transparent_35%),radial-gradient(circle_at_90%_60%,rgba(22,242,179,0.12),transparent_32%)] opacity-60" />
-          </div>
-          <ToastContainer />
-          <main className="min-h-screen relative mx-auto px-6 sm:px-10 lg:max-w-[72rem] xl:max-w-[78rem] 2xl:max-w-[94rem] dark:text-white pb-12">
-            <Navbar />
-            {children}
-            <ScrollToTop />
-          </main>
+          <Atmosphere />
+          <LuxuryCursor />
+          <ScrollProgress />
+          <ToastContainer theme="dark" />
+          <Navbar />
+          <main className="relative min-h-screen">{children}</main>
           <Footer />
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 const GlowCard = ({ children, identifier, className = "" }) => {
   useEffect(() => {
@@ -26,9 +26,9 @@ const GlowCard = ({ children, identifier, className = "" }) => {
           event?.y > CARD_BOUNDS.top - CONFIG.proximity &&
           event?.y < CARD_BOUNDS.top + CARD_BOUNDS.height + CONFIG.proximity
         ) {
-          CARD.style.setProperty('--active', 1);
+          CARD.style.setProperty("--active", 1);
         } else {
-          CARD.style.setProperty('--active', CONFIG.opacity);
+          CARD.style.setProperty("--active", CONFIG.opacity);
         }
 
         const CARD_CENTER = [
@@ -37,40 +37,37 @@ const GlowCard = ({ children, identifier, className = "" }) => {
         ];
 
         let ANGLE =
-          (Math.atan2(event?.y - CARD_CENTER[1], event?.x - CARD_CENTER[0]) *
-            180) /
+          (Math.atan2(event?.y - CARD_CENTER[1], event?.x - CARD_CENTER[0]) * 180) /
           Math.PI;
 
         ANGLE = ANGLE < 0 ? ANGLE + 360 : ANGLE;
-
-        CARD.style.setProperty('--start', ANGLE + 90);
+        CARD.style.setProperty("--start", ANGLE + 90);
       }
     };
 
-    document.body.addEventListener('pointermove', UPDATE);
+    document.body.addEventListener("pointermove", UPDATE);
 
     const RESTYLE = () => {
-      CONTAINER.style.setProperty('--gap', CONFIG.gap);
-      CONTAINER.style.setProperty('--blur', CONFIG.blur);
-      CONTAINER.style.setProperty('--spread', CONFIG.spread);
-      CONTAINER.style.setProperty(
-        '--direction',
-        CONFIG.vertical ? 'column' : 'row'
-      );
+      if (!CONTAINER) return;
+      CONTAINER.style.setProperty("--gap", CONFIG.gap);
+      CONTAINER.style.setProperty("--blur", CONFIG.blur);
+      CONTAINER.style.setProperty("--spread", CONFIG.spread);
+      CONTAINER.style.setProperty("--direction", CONFIG.vertical ? "column" : "row");
     };
 
     RESTYLE();
     UPDATE();
 
-    // Cleanup event listener
     return () => {
-      document.body.removeEventListener('pointermove', UPDATE);
+      document.body.removeEventListener("pointermove", UPDATE);
     };
   }, [identifier]);
 
   return (
-    <div className={`glow-container-${identifier} glow-container`}>
-      <article className={`glow-card glow-card-${identifier} h-fit cursor-pointer border border-[#2a2e5a] transition-all duration-300 relative bg-[#101123] text-gray-200 rounded-xl hover:border-transparent w-full ${className}`}>
+    <div className={`glow-container-${identifier} glow-container h-full`}>
+      <article
+        className={`glow-card glow-card-${identifier} relative h-full w-full overflow-hidden border border-[#c9a962]/20 bg-[#0c0c0d] text-[#c8c0b2] transition-all duration-300 ${className}`}
+      >
         <div className="glows"></div>
         {children}
       </article>

@@ -46,13 +46,5 @@ export const recommendations = [
     date: "Mentor at Bright Money",
     relationship: "Mentor to Abhishek for 2+ months",
     quote: "I mentored Abhishek at Bright Money for over two months and saw his ability to learn from people and tackle challenging problems. He has clear potential to grow into a great software engineer and would be a strong addition to any team."
-  },
-  {
-    id: 7,
-    name: "Aniket Batabyal",
-    title: "Engineering · Agoda",
-    date: "Internship mentor",
-    relationship: "Mentor to Abhishek",
-    quote: "I directly mentored Abhishek during his internship. He is a fast learner who easily grasps concepts, drills into problems to craft innovative solutions, and brings a positive attitude—making him a valuable team member."
   }
 ];

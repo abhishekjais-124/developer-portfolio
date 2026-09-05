@@ -1,78 +1,106 @@
-// @flow strict
-
 import { personalData } from "@/utils/data/personal-data";
-import Image from "next/image";
-import { PiSparkleBold } from "react-icons/pi";
+import Reveal from "../../atelier/reveal";
+import SectionFx from "../../atelier/section-fx";
 
-
+const path = [
+  { year: "2023 —", house: "Unacademy", role: "Senior Software Engineer" },
+  { year: "2021 — 23", house: "Slice", role: "Software Engineer" },
+  { year: "2021", house: "Bright Money", role: "Software Engineer" },
+];
 
 function AboutSection() {
   return (
-    <div id="about" className="my-12 lg:my-16 relative" suppressHydrationWarning>
-      <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-[#1a1443]/60 via-[#0b142d]/70 to-[#0f1032]/80 blur-3xl opacity-60" />
-
-      <div className="relative overflow-hidden rounded-3xl border border-[#262a4f] bg-gradient-to-br from-[#0b1229]/90 via-[#0e1535]/90 to-[#0a1027]/90 p-6 sm:p-8 lg:p-12 shadow-[0_20px_80px_rgba(0,0,0,0.35)]">
-        <div className="pointer-events-none absolute -left-10 -top-14 h-40 w-40 rounded-full bg-[#16f2b3]/20 blur-3xl animate-pulse" />
-        <div className="pointer-events-none absolute -right-10 top-10 h-32 w-32 rounded-full bg-pink-500/20 blur-3xl animate-pulse" />
-        <div className="pointer-events-none absolute left-1/3 bottom-0 h-24 w-24 rounded-full bg-indigo-500/20 blur-3xl animate-pulse" />
-
-        <div className="hidden lg:flex items-center gap-3 absolute -right-8 top-10">
-          <div className="flex flex-col items-center text-white/70">
-            <span className="bg-[#1a1443] text-white rotate-90 px-4 py-2 text-lg font-semibold rounded-md shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
-              ABOUT ME
-            </span>
-            <span className="mt-3 h-32 w-[2px] bg-gradient-to-b from-pink-500/0 via-pink-500/50 to-transparent" />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          <div className="order-2 lg:order-1 space-y-5">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#16f2b3]/10 px-4 py-2 text-[#16f2b3] text-xs font-semibold uppercase tracking-[0.18em] border border-[#16f2b3]/30 shadow-[0_10px_30px_rgba(22,242,179,0.15)]">
-              <PiSparkleBold className="text-[#16f2b3]" size={16} />
-              Who I am?
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-semibold dark:text-white leading-tight">
-              Building calm, confident products with a love for detail.
-            </h2>
-            <p className="dark:text-gray-200/90 text-base lg:text-lg leading-relaxed">
-              {personalData.description}
-            </p>
-            <div className="pt-4 border-t border-[#1f2548]">
-              <p className="font-medium mb-3 text-[#16f2b3] text-sm uppercase tracking-[0.16em]">My Interests</p>
-              <div className="flex flex-wrap gap-2.5">
-                {personalData.hobbies.map((hobby, index) => (
+    <section id="about" className="relative overflow-hidden py-10 lg:py-16">
+      <SectionFx variant="stars" />
+      <div className="atelier-wrap">
+        <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-20">
+          <div className="flex flex-col">
+            <Reveal>
+              <div className="section-kicker">
+                <span className="font-display text-lg tracking-normal text-[#c9a962]">01</span>
+                <span className="kicker-line h-px w-8 bg-[#c9a962]/50" />
+                <span>Introduction</span>
+              </div>
+            </Reveal>
+            <Reveal delay={80} className="clip-reveal" variant="clip-reveal">
+              <h2 className="mt-4 font-display text-[2.15rem] leading-[1.08] text-[#f3eee4] sm:mt-5 sm:text-5xl sm:leading-[1.05]">
+                <span>Quiet confidence. Loud systems.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="mt-5 max-w-lg text-sm leading-7 text-[#8d867b] sm:text-base">
+                A senior engineer who treats reliability as a luxury — precise, unhurried, and built to last.
+              </p>
+            </Reveal>
+            <Reveal delay={180}>
+              <p className="mt-8 font-display text-2xl leading-snug text-[#f3eee4]">
+                I build the invisible architecture behind products people trust at scale.
+              </p>
+            </Reveal>
+            <Reveal delay={220}>
+              <p className="mt-5 text-base leading-8 text-[#c8c0b2]">
+                {personalData.description}
+              </p>
+            </Reveal>
+            <Reveal delay={260} className="mt-auto pt-10">
+              <div className="flex flex-wrap gap-2">
+                {personalData.hobbies.map((hobby) => (
                   <span
-                    key={index}
-                    className="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white text-sm shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-sm hover:-translate-y-0.5 transition-transform duration-300"
+                    key={hobby}
+                    className="border border-[#c9a962]/20 px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.18em] text-[#c8c0b2]"
                   >
                     {hobby}
                   </span>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </div>
 
-          <div className="order-1 lg:order-2 w-full flex justify-center">
-            <div className="relative group max-w-[320px]">
-              <div className="absolute inset-4 rounded-3xl border border-white/5 bg-gradient-to-b from-white/5 via-transparent to-transparent blur-xl" />
-              <div className="absolute -inset-2 rounded-[26px] bg-gradient-to-br from-pink-500/20 via-purple-600/10 to-[#16f2b3]/20 opacity-70 group-hover:opacity-100 transition duration-700" />
-              <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-[#0c1026]/80 shadow-[0_25px_60px_rgba(0,0,0,0.45)]">
-                <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-gradient-to-br from-pink-500/40 to-purple-600/30 blur-2xl animate-pulse" />
-                <div className="absolute -left-6 -bottom-6 h-24 w-24 rounded-full bg-gradient-to-br from-[#16f2b3]/40 to-cyan-400/30 blur-2xl animate-pulse" />
-                <Image
-                  src={personalData.profile}
-                  width={320}
-                  height={320}
-                  alt="Abhishek"
-                  className="relative z-10 rounded-[18px] grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-[1.02] group-hover:translate-y-1"
-                  priority
-                />
+          <Reveal delay={120} variant="reveal-right" className="h-full">
+            <div className="atelier-card flex h-full flex-col p-5 sm:p-8 lg:p-10">
+              <div className="flex items-baseline justify-between gap-4">
+                <p className="text-[0.62rem] uppercase tracking-[0.24em] text-[#c9a962]">Dossier</p>
+                <p className="text-[0.62rem] uppercase tracking-[0.24em] text-[#8d867b]">Est. 2021</p>
+              </div>
+              <div className="mt-6 flex items-end justify-between gap-6 sm:mt-8">
+                <p className="font-display text-5xl italic leading-none text-[#f3eee4] sm:text-6xl lg:text-7xl">AJ</p>
+                <p className="pb-1 text-right text-sm leading-6 text-[#8d867b]">{personalData.address}</p>
+              </div>
+
+              <div className="mt-10 flex-1 border-t border-[#c9a962]/15 pt-8">
+                <div className="flex flex-col gap-6">
+                  {path.map((item) => (
+                    <div key={item.house} className="grid grid-cols-[5.25rem_1fr] items-baseline gap-3 sm:grid-cols-[7.5rem_1fr] sm:gap-4">
+                      <p className="text-[0.62rem] uppercase tracking-[0.18em] text-[#c9a962]">
+                        {item.year}
+                      </p>
+                      <div>
+                        <p className="font-display text-xl leading-none text-[#f3eee4]">{item.house}</p>
+                        <p className="mt-2 text-sm text-[#8d867b]">{item.role}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-5 border-t border-[#c9a962]/15 pt-6 sm:mt-10 sm:gap-x-8 sm:gap-y-6 sm:pt-8">
+                {[
+                  ["Focus", "Backend · Cloud · AI"],
+                  ["Now", "Unacademy"],
+                  ["Craft", "Latency · Reliability"],
+                  ["Mode", "Remote-friendly"],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <p className="text-[0.58rem] uppercase tracking-[0.2em] text-[#8d867b]">{label}</p>
+                    <p className="mt-2 font-display text-lg leading-snug text-[#f3eee4]">{value}</p>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -1,46 +1,57 @@
-// @flow strict
-import Link from 'next/link';
-import { personalData } from '@/utils/data/personal-data';
-import { FiGithub, FiLinkedin } from 'react-icons/fi';
-import { FaInstagram } from 'react-icons/fa';
-import { SiLeetcode } from 'react-icons/si';
+import Link from "next/link";
+import { personalData } from "@/utils/data/personal-data";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
+import { WavesGif } from "./atelier/loop-visuals";
 
 function Footer() {
   return (
-    <footer className="relative mt-12 dark:border-white/10 border-t dark:bg-[#050915]/80 dark:text-white">
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 dark:bg-[radial-gradient(circle_at_20%_20%,rgba(22,242,179,0.16),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(106,90,249,0.2),transparent_32%)]" />
-      <div className="mx-auto px-6 sm:px-12 lg:max-w-[72rem] xl:max-w-[78rem] 2xl:max-w-[94rem] py-8 lg:py-10">
-        <div className="flex flex-col items-center gap-4">
+    <footer className="relative overflow-hidden border-t border-[#c9a962]/12 pb-[env(safe-area-inset-bottom)]">
+      <WavesGif className="pointer-events-none absolute inset-x-0 top-0 h-24 w-full opacity-60" />
+      <div className="atelier-wrap py-10 lg:py-12">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <div>
+            <p className="section-kicker mb-3 sm:mb-4">
+              <span className="font-display text-lg tracking-normal">AJ</span>
+              <span className="h-px w-8 bg-[#c9a962]/50" />
+              <span>Available for conversations</span>
+            </p>
+            <h2 className="font-display text-[2.15rem] italic leading-[1.08] text-[#f3eee4] sm:text-5xl">
+              Let&apos;s make something
+              <span className="gold-text"> enduring.</span>
+            </h2>
+          </div>
           <div className="flex items-center gap-3">
             {personalData.github && (
-              <Link target="_blank" href={personalData.github} aria-label="GitHub" className="flex h-10 w-10 items-center justify-center rounded-full dark:border-white/10 border dark:bg-white/5 dark:text-white/70 dark:hover:text-white dark:hover:border-white/30 transition-all duration-200">
-                <FiGithub size={18} />
+              <Link target="_blank" href={personalData.github} aria-label="GitHub" className="flex h-11 w-11 items-center justify-center border border-[#c9a962]/20 text-[#c8c0b2] transition-colors hover:border-[#c9a962] hover:text-[#c9a962]">
+                <FiGithub size={16} />
               </Link>
             )}
             {personalData.linkedIn && (
-              <Link target="_blank" href={personalData.linkedIn} aria-label="LinkedIn" className="flex h-10 w-10 items-center justify-center rounded-full dark:border-white/10 border dark:bg-white/5 dark:text-white/70 dark:hover:text-white dark:hover:border-white/30 transition-all duration-200">
-                <FiLinkedin size={18} />
+              <Link target="_blank" href={personalData.linkedIn} aria-label="LinkedIn" className="flex h-11 w-11 items-center justify-center border border-[#c9a962]/20 text-[#c8c0b2] transition-colors hover:border-[#c9a962] hover:text-[#c9a962]">
+                <FiLinkedin size={16} />
               </Link>
             )}
             {personalData.leetcode && (
-              <Link target="_blank" href={personalData.leetcode} aria-label="LeetCode" className="flex h-10 w-10 items-center justify-center rounded-full dark:border-white/10 border dark:bg-white/5 dark:text-white/70 dark:hover:text-white dark:hover:border-white/30 transition-all duration-200">
-                <SiLeetcode size={18} />
+              <Link target="_blank" href={personalData.leetcode} aria-label="LeetCode" className="flex h-11 w-11 items-center justify-center border border-[#c9a962]/20 text-[#c8c0b2] transition-colors hover:border-[#c9a962] hover:text-[#c9a962]">
+                <SiLeetcode size={16} />
               </Link>
             )}
             {personalData.instagram && (
-              <Link target="_blank" href={personalData.instagram} aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full dark:border-white/10 border dark:bg-white/5 dark:text-white/70 dark:hover:text-white dark:hover:border-white/30 transition-all duration-200">
-                <FaInstagram size={18} />
+              <Link target="_blank" href={personalData.instagram} aria-label="Instagram" className="flex h-11 w-11 items-center justify-center border border-[#c9a962]/20 text-[#c8c0b2] transition-colors hover:border-[#c9a962] hover:text-[#c9a962]">
+                <FaInstagram size={16} />
               </Link>
             )}
           </div>
-
-          <p className="text-sm text-center dark:text-white/60">
-            © {new Date().getFullYear()} Crafted by <span className="dark:text-white">{personalData.name}</span>. Built with care and plenty of coffee.
-          </p>
+        </div>
+        <div className="mt-12 flex flex-col justify-between gap-3 border-t border-[#c9a962]/10 pt-6 text-[0.68rem] uppercase tracking-[0.22em] text-[#8d867b] sm:flex-row">
+          <p>© {new Date().getFullYear()} {personalData.name}</p>
+          <p>Bangalore · Crafted with restraint</p>
         </div>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

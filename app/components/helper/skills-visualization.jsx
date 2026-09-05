@@ -15,24 +15,24 @@ const skillsVisualizationData = [
   { skill: "HLD", proficiency: 90, category: "Design" },
 ];
 
-const COLORS = ['#16f2b3', '#6a5af9', '#f472b6', '#ff8fb3', '#a8d5ff', '#ffa366', '#98d8c8', '#f7b731'];
+const COLORS = ['#c9a962', '#e8d5a3', '#8d6b2f', '#f6e7b8', '#b08d4a', '#d4b56a', '#a07c38', '#e0c88a'];
 
 export default function SkillsVisualization() {
   const { theme } = useTheme();
   
   const isDark = theme === 'dark';
-  const textColor = isDark ? '#ffffff' : '#1f1f1f';
+  const textColor = isDark ? '#f3eee4' : '#1f1f1f';
   const gridColor = isDark ? '#ffffff20' : '#00000020';
   const bgColor = isDark ? 'transparent' : '#ffffff';
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className={`${isDark ? 'bg-[#0a0d1e]' : 'bg-white'} p-3 rounded-lg border ${isDark ? 'border-white/20' : 'border-gray-200'} shadow-lg`}>
-          <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        <div className={`${isDark ? 'bg-[#0c0c0d]' : 'bg-white'} p-3 border ${isDark ? 'border-[#c9a962]/25' : 'border-gray-200'} shadow-lg`}>
+          <p className={`font-semibold ${isDark ? 'text-[#f3eee4]' : 'text-gray-900'}`}>
             {payload[0].payload.skill}
           </p>
-          <p className={`text-sm ${isDark ? 'text-[#16f2b3]' : 'text-green-600'}`}>
+          <p className={`text-sm ${isDark ? 'text-[#c9a962]' : 'text-green-600'}`}>
             Proficiency: {payload[0].value}%
           </p>
         </div>
@@ -43,7 +43,7 @@ export default function SkillsVisualization() {
 
   return (
     <div className="w-full h-full overflow-x-auto">
-      <ResponsiveContainer width="100%" height={420} minWidth={300}>
+      <ResponsiveContainer width="100%" height={280} minWidth={260} className="sm:h-[420px]">
         <BarChart data={skillsVisualizationData} margin={{ top: 20, right: 15, left: -5, bottom: 80 }}>
           <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
           <XAxis 
@@ -61,7 +61,7 @@ export default function SkillsVisualization() {
           />
           <Tooltip content={<CustomTooltip />} />
           <Legend wrapperStyle={{ color: textColor }} />
-          <Bar dataKey="proficiency" fill="#16f2b3" radius={[8, 8, 0, 0]} name="Proficiency Level">
+          <Bar dataKey="proficiency" fill="#c9a962" radius={[2, 2, 0, 0]} name="Proficiency Level">
             {skillsVisualizationData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
